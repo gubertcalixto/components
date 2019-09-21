@@ -1,0 +1,26 @@
+vs-input,
+vs-search-input,
+vs-search,
+vs-datepicker {
+  .mat-form-field-suffix vs-icon {
+    display: inline-flex;
+    min-width: unset;
+    min-height: unset;
+    max-width: unset;
+    max-height: unset;
+    width: unset;
+    height: unset;
+  }
+
+  mat-form-field {
+    input.mat-input-element:disabled {
+      color: rgba(0, 0, 0, 0.84);
+    }
+
+    .mat-form-field-disabled.mat-form-field-underline {
+      // !important
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.03) 60%, transparent 0%);
+      background-size: 10px 100%;
+    }
+  }
+}

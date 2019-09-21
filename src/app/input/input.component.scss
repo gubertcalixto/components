@@ -1,0 +1,19 @@
+@mixin vs-input-theme($theme) {
+  vs-input {
+  }
+}
+
+@mixin vs-input-layout($config) {
+  vs-input {
+    display: flex;
+    flex: auto;
+    flex-direction: row;
+    
+    // TODO Cursor pointer for prefix e suffix
+
+    // Not force to width be 180px (Angular Material Rule)
+    .mat-form-field-infix {
+      width: 100%;
+    }
+  }
+}
