@@ -1,8 +1,9 @@
 <mat-form-field [hintLabel]="hintLabel">
     <!-- (blur)="onBlur($event)" (click)="onClick($event)" (focus)="onFocus($event)" (keyup.enter)="onKeyEnter($event)" -->
-    <input matInput [(ngModel)]="value" (ngModelChange)="valueChange($event)" [type]="type" [placeholder]="placeholder"
-        [required]="required" [disabled]="disabled" [readonly]="readonly" [matTooltip]="tooltip"
-        [matTooltipPosition]="tooltipPosition" [mask]="currentMask" [showMaskTyped]="showMaskTyped"
-        [dropSpecialCharacters]="showMaskTyped || dropSpecialCharacters" [maxlength]="maxLength" [autofocus]="focus">
+    <input #input matInput [(ngModel)]="_value" (ngModelChange)="modelValueChange($event)" [type]="type"
+        [placeholder]="placeholder" [required]="required" [disabled]="disabled" [readonly]="readonly"
+        [matTooltip]="tooltip" [matTooltipPosition]="tooltipPosition" [mask]="currentMask"
+        [showMaskTyped]="showMaskTyped" [dropSpecialCharacters]="showMaskTyped || dropSpecialCharacters"
+        [maxlength]="_maxLength">
     <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
 </mat-form-field>
