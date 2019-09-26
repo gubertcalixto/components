@@ -46,7 +46,7 @@
     <button mat-raised-button color="accent" (click)="maskChange()">mask: {{mask}}</button>
     <span>Erro ao mostrar valor ao trocar de mascara</span>
   </div>
-  <h4>Falta</h4>
+  <h4 *hasPermission="['123','qwe'] op 'OR'">Falta</h4>
   <span>
     @Input() maxInteger: number; <br />
     @Input() precision = 2; <br />

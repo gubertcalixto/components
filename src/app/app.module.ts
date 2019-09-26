@@ -12,11 +12,13 @@ import { NgxMaskModule } from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InputComponent } from './input/input.component';
+import { HasPermissionDirective } from './shared/has-permission.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InputComponent
+    InputComponent,
+    HasPermissionDirective
   ],
   imports: [
     CommonModule,
