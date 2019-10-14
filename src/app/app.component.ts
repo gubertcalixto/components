@@ -11,6 +11,7 @@ export class AppComponent {
   kanbanList = [
     {
       title: 'Teste',
+      icon: 'edit',
       hasAddAction: true,
       hasDeleteAction: false
     },

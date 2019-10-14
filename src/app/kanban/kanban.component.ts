@@ -20,13 +20,13 @@ export class KanbanComponent implements OnInit, OnDestroy {
   subs: Subscription[] = [];
 
   /**
-   * Define o template do Template header\
+   * Define o template do header\
    * Default None
    */
   @Input() headerTemplate: TemplateRef<any>;
 
   /**
-   * Define o template do Template listHeader\
+   * Define o template do listHeader\
    * Default
    * ```
    * <ng-template #template let-title="title">{{title}}</ng-template>
@@ -42,7 +42,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
    */
   @Input() listHeaderTemplate: TemplateRef<any>;
   /**
-   * Define o template do Template cardHeader\
+   * Define o template do cardHeader\
    * Default
    * ```
    * <ng-template #template let-title="title">{{title}}</ng-template>
@@ -50,7 +50,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
    */
   @Input() cardHeaderTemplate: TemplateRef<any>;
   /**
-   * Define o template do Template cardBody\
+   * Define o template do cardBody\
    * Default
    * ```
    * <ng-template #template let-description="description">{{description}}</ng-template>
@@ -58,20 +58,25 @@ export class KanbanComponent implements OnInit, OnDestroy {
    */
   @Input() cardBodyTemplate: TemplateRef<any>;
   /**
-   * Define o template do Template cardFooter\
+   * Define o template do cardFooter\
    * Default None
    */
   @Input() cardFooterTemplate: TemplateRef<any>;
   /**
-   * Define o template do Template listFooter\
+   * Define o template do listFooter\
    * Default None
    */
   @Input() listFooterTemplate: TemplateRef<any>;
   /**
-   * Define o template do Template footer\
+   * Define o template do footer\
    * Default None
    */
   @Input() footerTemplate: TemplateRef<any>;
+  /**
+   * Define o template do card ao ser arrastado (float card)\
+   * Default None
+   */
+  @Input() cardDragPlaceholderTemplate: TemplateRef<any>;
 
   @Input() lists: VsKanbanList[] = [];
   @Input() service: any;
@@ -81,7 +86,6 @@ export class KanbanComponent implements OnInit, OnDestroy {
    */
   @Input() cardSize = 30;
   @Input() pageSize = 5;
-  @Input() showListTotalCount = false;
 
   constructor(breakpointObserver: BreakpointObserver) {
     this.subs.push(breakpointObserver.observe([Breakpoints.HandsetPortrait])

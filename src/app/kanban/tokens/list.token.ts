@@ -1,6 +1,7 @@
 export class VsKanbanList {
     id?: string | number;
     title: string;
+    icon?: string;
     data?: any;
     idCards?: string[] = [];
     hasAddAction?: boolean;

@@ -85,6 +85,8 @@ $card-vertical-gap: 6px; // CRM <= 5
 $card-internal-gap: 8px;
 $card-background-color: #fff;
 $card-color: #000;
+$card-box-shadown: 5px 5px 15px 0px #aaa;
+$card-border-radius: 4px;
 .vs-kanban-card {
   margin-top: $card-vertical-gap;
   // TODO - Check value
@@ -93,7 +95,7 @@ $card-color: #000;
   position: relative;
   background-color: $card-background-color;
   color: $card-color;
-  border-radius: $list-border-radius;
+  border-radius: $card-border-radius;
   padding: $card-internal-gap;
   // transition: box-shadow 150ms ease;
   > .vs-kanban-header {
@@ -107,6 +109,12 @@ $card-color: #000;
 }
 .vs-kanban-card.vs-kanban-cdk-drag-dragging {
   padding: 0;
+}
+.vs-kanban-card.cdk-drag-preview {
+  border: 1px solid #dcdcdc;
+  -webkit-box-shadow: $card-box-shadown;
+  -moz-box-shadow: $card-box-shadown;
+  box-shadow: $card-box-shadown;
 }
 // #endregion Card
 
