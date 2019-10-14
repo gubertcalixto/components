@@ -7,7 +7,7 @@ import { VsKanbanList } from './tokens/list.token';
 
 /**
  * Define o template do omponent C\
- * Default None
+ * **Default** None
  */
 @Component({
   selector: 'app-kanban',
@@ -21,13 +21,13 @@ export class KanbanComponent implements OnInit, OnDestroy {
 
   /**
    * Define o template do header\
-   * Default None
+   * **Default** None
    */
   @Input() headerTemplate: TemplateRef<any>;
 
   /**
    * Define o template do listHeader\
-   * Default
+   * **Default**
    * ```
    * <ng-template #template let-title="title">{{title}}</ng-template>
    *    <div class="vs-kanban-list-header">
@@ -39,42 +39,54 @@ export class KanbanComponent implements OnInit, OnDestroy {
    *    </div>
    * </ng-template>
    * ```
+   * **Variáveis disponíveis:**
+   * - list
    */
   @Input() listHeaderTemplate: TemplateRef<any>;
   /**
    * Define o template do cardHeader\
-   * Default
+   * **Default**\
    * ```
    * <ng-template #template let-title="title">{{title}}</ng-template>
    * ```
+   * **Variáveis disponíveis:**
+   * - card
    */
   @Input() cardHeaderTemplate: TemplateRef<any>;
   /**
    * Define o template do cardBody\
-   * Default
+   * **Default**\
    * ```
    * <ng-template #template let-description="description">{{description}}</ng-template>
    * ```
+   * **Variáveis disponíveis:**
+   * - card
    */
   @Input() cardBodyTemplate: TemplateRef<any>;
   /**
    * Define o template do cardFooter\
-   * Default None
+   * **Default** None\
+   * **Variáveis disponíveis:**
+   * - card
    */
   @Input() cardFooterTemplate: TemplateRef<any>;
   /**
    * Define o template do listFooter\
-   * Default None
+   * **Default** None\
+   * **Variáveis disponíveis:**
+   * - list
    */
   @Input() listFooterTemplate: TemplateRef<any>;
   /**
    * Define o template do footer\
-   * Default None
+   * **Default** None
    */
   @Input() footerTemplate: TemplateRef<any>;
   /**
    * Define o template do card ao ser arrastado (float card)\
-   * Default None
+   * **Default** None\
+   * **Variáveis disponíveis:**
+   * - card
    */
   @Input() cardDragPlaceholderTemplate: TemplateRef<any>;
 
