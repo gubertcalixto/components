@@ -12,6 +12,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InputComponent } from './input/input.component';
+import { KanbanModule } from './kanban/kanban.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { InputComponent } from './input/input.component';
     ReactiveFormsModule,
     FormsModule,
     MatButtonModule,
+    KanbanModule,
 
     MatTooltipModule,
     MatFormFieldModule,

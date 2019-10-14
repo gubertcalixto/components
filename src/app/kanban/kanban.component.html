@@ -1,0 +1,61 @@
+<div class="vs-kanban-board" cdkDropListGroup>
+    <div *ngIf="headerTemplate" class="vs-kanban-header">
+        <ng-template [ngTemplateOutlet]="headerTemplate"></ng-template>
+    </div>
+    <div class="vs-kanban-list-wrapper">
+        <div *ngFor="let list of lists; trackBy: listTrackBy" class="vs-kanban-list-container">
+            <div class="vs-kanban-list">
+                <div class="vs-kanban-header">
+                    <ng-template [ngTemplateOutlet]="listHeaderTemplate || listHeaderDefaultTemplate"
+                        [ngTemplateOutletContext]="{list: list}">
+                    </ng-template>
+                </div>
+                <cdk-virtual-scroll-viewport (scrolledIndexChange)="scrollChange($event)" [itemSize]=" cardSize"
+                    class="vs-kanban-content" [id]="list.id || list.title" cdkDropList
+                    (cdkDropListDropped)="dropCard($event)">
+                    <div class="vs-kanban-no-content" *ngIf="noContent">Sem Resultados</div>
+                    <div *cdkVirtualFor="let card of cardList; trackBy: cardTrackBy" class="vs-kanban-card" cdkDrag
+                        [cdkDragStartDelay]="cardDragDelay" [cdkDragData]="'cdkDragData'" cdkDragBoundary=".board"
+                        [ngClass]="{'draggable': true}">
+                        <div class="vs-kanban-header">
+                            <ng-template [ngTemplateOutlet]="cardHeaderTemplate || cardHeaderDefaultTemplate"
+                                [ngTemplateOutletContext]="{title: 'Card 1'}"></ng-template>
+                        </div>
+                        <div class="vs-kanban-body">
+                            <ng-template [ngTemplateOutlet]="cardBodyTemplate || cardBodyDefaultTemplate"
+                                [ngTemplateOutletContext]="{description: 'Description 1'}"></ng-template>
+                        </div>
+                        <div *ngIf="cardFooterTemplate" class="vs-kanban-footer">
+                            <ng-template [ngTemplateOutlet]="cardFooterTemplate"></ng-template>
+                        </div>
+                    </div>
+                </cdk-virtual-scroll-viewport>
+                <div *ngIf="listFooterTemplate" class="vs-kanban-footer">
+                    <ng-template [ngTemplateOutlet]="listFooterTemplate" [ngTemplateOutletContext]="{list: list}">
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="footerTemplate" class="vs-kanban-footer">
+        <ng-template [ngTemplateOutlet]="footerTemplate"></ng-template>
+    </div>
+</div>
+
+<ng-template #listHeaderDefaultTemplate let-list="list">
+    <div class="vs-kanban-list-header">
+        <h3 class="vs-kanban-info">
+            {{list.title}}
+        </h3>
+        <div *ngIf="list.hasAddAction || list.hasDeleteAction">
+            <button mat-icon-button *ngIf="list.hasAddAction">
+                <mat-icon>add</mat-icon>
+            </button>
+            <button mat-icon-button *ngIf="list.hasDeleteAction">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+</ng-template>
+<ng-template #cardHeaderDefaultTemplate let-title="title">{{title}}</ng-template>
+<ng-template #cardBodyDefaultTemplate let-description="description">{{description}}</ng-template>
