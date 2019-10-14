@@ -16,7 +16,7 @@
                     <div class="vs-kanban-no-content" *ngIf="noContent">Sem Resultados</div>
                     <div *cdkVirtualFor="let card of cardList; trackBy: cardTrackBy" class="vs-kanban-card" cdkDrag
                         [cdkDragStartDelay]="cardDragDelay" [cdkDragData]="'cdkDragData'" cdkDragBoundary=".board"
-                        [ngClass]="{'draggable': true}">
+                        [cdkDragDisabled]="!card.canMove" [ngClass]="{'draggable': true}">
                         <ng-container *ngIf="cardDragPlaceholderTemplate">
                             <div class="vs-kanban-placeholder" *cdkDragPlaceholder>
                                 <ng-template [ngTemplateOutlet]="cardDragPlaceholderTemplate"
