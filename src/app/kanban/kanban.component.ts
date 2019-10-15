@@ -5,10 +5,6 @@ import { Subscription } from 'rxjs';
 
 import { VsKanbanList } from './tokens/list.token';
 
-/**
- * Define o template do omponent C\
- * **Default** None
- */
 @Component({
   selector: 'app-kanban',
   templateUrl: './kanban.component.html',
