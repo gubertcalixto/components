@@ -139,11 +139,11 @@ $card-border-radius: 4px;
 // #region Animations
 // Card sort animation
 .vs-kanban-cdk-drop-list-dragging .vs-kanban-cdk-drag {
-  transition: transform 250ms cubic-bezier(0, 0, 0vs-kanban-2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 // Card drop animation
 // .vs-kanban-cdk-drag-animating {
-//   transition: transform 200ms cubic-bezier(0, 0, 0.vs-kanban-2, 1);
+//   transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
 // }
 
 // #endregion Animations
