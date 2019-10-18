@@ -4,67 +4,14 @@
     </div>
     <div class="vs-kanban-list-wrapper">
         <div *ngFor="let list of lists; trackBy: listTrackBy" class="vs-kanban-list-container">
-            <div class="vs-kanban-list">
-                <div class="vs-kanban-header">
-                    <ng-template [ngTemplateOutlet]="listHeaderTemplate || listHeaderDefaultTemplate"
-                        [ngTemplateOutletContext]="{list: list}">
-                    </ng-template>
-                </div>
-                <cdk-virtual-scroll-viewport (scrolledIndexChange)="scrollChange($event)" [itemSize]=" cardSize"
-                    class="vs-kanban-content" [id]="list.id || list.title" cdkDropList
-                    (cdkDropListDropped)="dropCard($event)">
-                    <div class="vs-kanban-no-content" *ngIf="noContent">Sem Resultados</div>
-                    <div *cdkVirtualFor="let card of cardList; trackBy: cardTrackBy" class="vs-kanban-card" cdkDrag
-                        [cdkDragStartDelay]="cardDragDelay" [cdkDragData]="'cdkDragData'" cdkDragBoundary=".board"
-                        [cdkDragDisabled]="!card.canMove" [ngClass]="{'draggable': true}">
-                        <ng-container *ngIf="cardDragPlaceholderTemplate">
-                            <div class="vs-kanban-placeholder" *cdkDragPlaceholder>
-                                <ng-template [ngTemplateOutlet]="cardDragPlaceholderTemplate"
-                                    [ngTemplateOutletContext]="{card: card}">
-                                </ng-template>
-                            </div>
-                        </ng-container>
-                        <div class="vs-kanban-header">
-                            <ng-template [ngTemplateOutlet]="cardHeaderTemplate || cardHeaderDefaultTemplate"
-                                [ngTemplateOutletContext]="{card: card}"></ng-template>
-                        </div>
-                        <div class="vs-kanban-body">
-                            <ng-template [ngTemplateOutlet]="cardBodyTemplate || cardBodyDefaultTemplate"
-                                [ngTemplateOutletContext]="{card: card}"></ng-template>
-                        </div>
-                        <div *ngIf="cardFooterTemplate" class="vs-kanban-footer">
-                            <ng-template [ngTemplateOutlet]="cardFooterTemplate"
-                                [ngTemplateOutletContext]="{card: card}"></ng-template>
-                        </div>
-                    </div>
-                </cdk-virtual-scroll-viewport>
-                <div *ngIf="listFooterTemplate" class="vs-kanban-footer">
-                    <ng-template [ngTemplateOutlet]="listFooterTemplate" [ngTemplateOutletContext]="{list: list}">
-                    </ng-template>
-                </div>
-            </div>
+            <vs-kanban-list [service]="service" [list]="list" [listHeaderTemplate]="listHeaderTemplate"
+                [listFooterTemplate]="listFooterTemplate" [cardHeaderTemplate]="cardHeaderTemplate"
+                [cardBodyTemplate]="cardBodyTemplate" [cardFooterTemplate]="cardFooterTemplate"
+                [cardDragPlaceholderTemplate]="cardDragPlaceholderTemplate" [cardSize]="cardSize" [pageSize]="pageSize">
+            </vs-kanban-list>
         </div>
     </div>
     <div *ngIf="footerTemplate" class="vs-kanban-footer">
         <ng-template [ngTemplateOutlet]="footerTemplate"></ng-template>
     </div>
 </div>
-
-<ng-template #listHeaderDefaultTemplate let-list="list">
-    <div class="vs-kanban-list-header">
-        <h3 class="vs-kanban-info">
-            <mat-icon *ngIf="list.icon">{{list.icon}}</mat-icon>
-            {{list.title}}
-        </h3>
-        <div *ngIf="list.hasAddAction || list.hasDeleteAction">
-            <button mat-icon-button *ngIf="list.hasAddAction">
-                <mat-icon>add</mat-icon>
-            </button>
-            <button mat-icon-button *ngIf="list.hasDeleteAction">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </div>
-    </div>
-</ng-template>
-<ng-template #cardHeaderDefaultTemplate let-card="card">{{card}}</ng-template>
-<ng-template #cardBodyDefaultTemplate let-card="card">{{card}}</ng-template>

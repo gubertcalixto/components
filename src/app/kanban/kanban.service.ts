@@ -1,45 +1,14 @@
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export abstract class KanbanService {
+export abstract class VsKanbanService {
 
   constructor() { }
 
-
-  getBoards(): Promise<any> {
-    return;
-  }
-
-  getBoard(boardId): Promise<any> {
-    return;
-  }
-
-  addCard(listId, newCard) {
-  }
-
-  addList(newList) {
-  }
-
-  removeList(listId) {
-  }
-
-  removeCard(cardId, listId?) {
-  }
-
-  updateBoard() {
-  }
-
-  updateCard(newCard) {
-  }
-
-  createNewBoard(board) {
-  }
-  onCardDropped(destinationList: any, card: any, evt: CdkDragDrop<any>): void {
-  }
-
-  onCardOut(destinationList: any, card: any, evt: any): void {
+  getCards(listId: string | number, skipCount: number, pageSize: number): Observable<any> {
+    throw new Error('getCard not implemented');
   }
 }

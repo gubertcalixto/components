@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+import { CustomKanbanService } from './custom-kanban.service';
 import { VsKanbanList } from './kanban/tokens/list.token';
 
 @Component({
@@ -8,17 +9,15 @@ import { VsKanbanList } from './kanban/tokens/list.token';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  service = this.kanbanService;
+  constructor(private kanbanService: CustomKanbanService) {
+  }
   kanbanList = [
-    {
+    new VsKanbanList({
       title: 'Teste',
       icon: 'edit',
       hasAddAction: true,
       hasDeleteAction: false
-    },
-    {
-      title: 'Teste 2',
-      hasAddAction: false,
-      hasDeleteAction: true
-    }
+    })
   ] as VsKanbanList[];
 }

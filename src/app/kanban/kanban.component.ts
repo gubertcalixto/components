@@ -3,15 +3,17 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, Input, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 
+import { VsKanbanService } from './kanban.service';
+import { VsKanbanCard } from './tokens/card.token';
 import { VsKanbanList } from './tokens/list.token';
 
 @Component({
-  selector: 'app-kanban',
+  selector: 'vs-kanban',
   templateUrl: './kanban.component.html',
   styleUrls: ['./kanban.component.scss']
 })
 export class KanbanComponent implements OnInit, OnDestroy {
-  cardList = Array.from({ length: 20000 }).map((_, i) => `Item #${i}`);
+  cardList: VsKanbanCard[] = [];
   cardDragDelay = 0;
   subs: Subscription[] = [];
 
@@ -20,80 +22,27 @@ export class KanbanComponent implements OnInit, OnDestroy {
    * **Default** None
    */
   @Input() headerTemplate: TemplateRef<any>;
-
-  /**
-   * Define o template do listHeader\
-   * **Default**
-   * ```
-   * <ng-template #template let-title="title">{{title}}</ng-template>
-   *    <div class="vs-kanban-list-header">
-   *      <h3 class="vs-kanban-info">{{list.title}}</h3>
-   *      <div *ngIf="list.hasAddAction || list.hasDeleteAction">
-   *          <button *ngIf="list.hasAddAction">add</button>
-   *          <button *ngIf="list.hasDeleteAction">hasDeleteAction</button>
-   *      </div>
-   *    </div>
-   * </ng-template>
-   * ```
-   * **Variáveis disponíveis:**
-   * - list
-   */
-  @Input() listHeaderTemplate: TemplateRef<any>;
-  /**
-   * Define o template do cardHeader\
-   * **Default**\
-   * ```
-   * <ng-template #template let-title="title">{{title}}</ng-template>
-   * ```
-   * **Variáveis disponíveis:**
-   * - card
-   */
-  @Input() cardHeaderTemplate: TemplateRef<any>;
-  /**
-   * Define o template do cardBody\
-   * **Default**\
-   * ```
-   * <ng-template #template let-description="description">{{description}}</ng-template>
-   * ```
-   * **Variáveis disponíveis:**
-   * - card
-   */
-  @Input() cardBodyTemplate: TemplateRef<any>;
-  /**
-   * Define o template do cardFooter\
-   * **Default** None\
-   * **Variáveis disponíveis:**
-   * - card
-   */
-  @Input() cardFooterTemplate: TemplateRef<any>;
-  /**
-   * Define o template do listFooter\
-   * **Default** None\
-   * **Variáveis disponíveis:**
-   * - list
-   */
-  @Input() listFooterTemplate: TemplateRef<any>;
   /**
    * Define o template do footer\
    * **Default** None
    */
   @Input() footerTemplate: TemplateRef<any>;
-  /**
-   * Define o template do card ao ser arrastado (float card)\
-   * **Default** None\
-   * **Variáveis disponíveis:**
-   * - card
-   */
+
+  @Input() listHeaderTemplate: TemplateRef<any>;
+  @Input() listFooterTemplate: TemplateRef<any>;
+  @Input() cardHeaderTemplate: TemplateRef<any>;
+  @Input() cardBodyTemplate: TemplateRef<any>;
+  @Input() cardFooterTemplate: TemplateRef<any>;
   @Input() cardDragPlaceholderTemplate: TemplateRef<any>;
 
   @Input() lists: VsKanbanList[] = [];
-  @Input() service: any;
+  @Input() service: VsKanbanService;
   /**
-   * Angular CDK Experimental will no longer need it
+   * Angular CDK Experimental (v9 probably) will no longer need it
    * Use the minimum height of your cards
    */
   @Input() cardSize = 30;
-  @Input() pageSize = 5;
+  @Input() pageSize = 15;
 
   constructor(breakpointObserver: BreakpointObserver) {
     this.subs.push(breakpointObserver.observe([Breakpoints.HandsetPortrait])
@@ -108,29 +57,32 @@ export class KanbanComponent implements OnInit, OnDestroy {
   }
 
   dropCard(event: CdkDragDrop<any>) {
-    console.log(event.previousContainer.data);
-    console.log(event.container.data);
-    console.log(event.previousIndex);
-    console.log(event.currentIndex);
+    // console.log(event.previousContainer.data);
+    // console.log(event.container.data);
+    // console.log(event.previousIndex);
+    // console.log(event.currentIndex);
 
+    // if (event.previousContainer === event.container) {
+    //   this.moveCardInList(event.container.data, event.previousIndex, event.currentIndex);
+    // } else {
+    //   this.transferCard(event.previousContainer.data,
+    //     event.container.data,
+    //     event.previousIndex,
+    //     event.currentIndex);
+    // }
 
-    console.log(event);
+    // console.log(event);
+  }
+  transferCard(oldList: VsKanbanList, newList: VsKanbanList, previousIndex: number, currentIndex: number) {
   }
 
-  listTrackBy(index: number) {
-    // TODO: may use list.id
-    return index;
-  }
-  cardTrackBy(index: number, t) {
-    // TODO: may use card.id
-    return index;
+  moveCardInList(list: VsKanbanList, previousIndex: number, currentIndex: number) {
+    // list.cards.splice(currentIndex, 0, list.cards[previousIndex]);
+    // previousIndex += currentIndex < previousIndex ? 1 : 0;
+    // list.cards.splice(previousIndex, 0);
   }
 
-  log(event) {
-    console.log(event);
-  }
-
-  scrollChange(indexLoaded: number) {
-    this.log('pesquisa ' + indexLoaded);
+  listTrackBy(index: number, list: VsKanbanList) {
+    return list.id;
   }
 }

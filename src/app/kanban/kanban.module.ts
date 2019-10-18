@@ -2,21 +2,18 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 
+import { KanbanCardComponent } from './kanban-card/kanban-card.component';
+import { KanbanListComponent } from './kanban-list/kanban-list.component';
 import { KanbanComponent } from './kanban.component';
 
 @NgModule({
-  declarations: [KanbanComponent],
+  declarations: [KanbanComponent, KanbanListComponent, KanbanCardComponent],
   imports: [
     CommonModule,
+
     DragDropModule,
     ScrollingModule,
-
-
-    MatButtonModule,
-    MatIconModule
   ],
   exports: [KanbanComponent]
 })

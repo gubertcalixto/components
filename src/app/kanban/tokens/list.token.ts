@@ -3,13 +3,17 @@ export class VsKanbanList {
     title: string;
     icon?: string;
     data?: any;
-    idCards?: string[] = [];
+    cards?: string[] = [];
     hasAddAction?: boolean;
     hasDeleteAction?: boolean;
 
     constructor(list?: VsKanbanList) {
-        this.title = list.title;
         this.id = list.id || this.title;
-        this.idCards = [];
+        this.title = list.title;
+        this.icon = list.icon;
+        this.data = list.data;
+        this.cards = list.cards || [];
+        this.hasAddAction = list.hasAddAction;
+        this.hasDeleteAction = list.hasDeleteAction;
     }
 }

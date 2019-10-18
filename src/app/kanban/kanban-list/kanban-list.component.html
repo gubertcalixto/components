@@ -1,0 +1,39 @@
+<div class="vs-kanban-header">
+  <ng-template [ngTemplateOutlet]="listHeaderTemplate || listHeaderDefaultTemplate"
+    [ngTemplateOutletContext]="{list: list}">
+  </ng-template>
+</div>
+<!-- {{dataSource.dataStream | async | json}} -->
+<cdk-virtual-scroll-viewport *ngIf="dataSource" (scrolledIndexChange)="scrollChange($event)" [itemSize]="cardSize"
+  class="vs-kanban-content" [id]="list.id || list.title" cdkDropList [cdkDropListData]="list"
+  (cdkDropListDropped)="dropCard($event)">
+  <div class="vs-kanban-no-content" *ngIf="noContent">Sem Resultados</div>
+  <!-- 
+    # TODO Added in Angular 8
+    [cdkDragStartDelay]="cardDragDelay"
+  -->
+  <!-- [ngClass]="{'draggable': card.canMove}" [cdkDragDisabled]="!card.canMove" -->
+  <div *cdkVirtualFor="let card of dataSource" cdkDrag [cdkDragData]="card" cdkDragBoundary=".board">
+    <vs-kanban-card *ngIf="card" [card]="card" [cardHeaderTemplate]="cardHeaderTemplate"
+      [cardBodyTemplate]="cardBodyTemplate" [cardFooterTemplate]="cardFooterTemplate"
+      [cardDragPlaceholderTemplate]="cardDragPlaceholderTemplate">
+    </vs-kanban-card>
+  </div>
+</cdk-virtual-scroll-viewport>
+<div *ngIf="listFooterTemplate" class="vs-kanban-footer">
+  <ng-template [ngTemplateOutlet]="listFooterTemplate" [ngTemplateOutletContext]="{list: list}">
+  </ng-template>
+</div>
+
+<ng-template #listHeaderDefaultTemplate let-list="list">
+  <div class="vs-kanban-list-header">
+    <h3 class="vs-kanban-info">
+      <!-- <vs-icon *ngIf="list.icon" [icon]="list.icon"></vs-icon> -->
+      {{list.title}}
+    </h3>
+    <div *ngIf="list.hasAddAction || list.hasDeleteAction">
+      <!-- <vs-button model="icon" icon="plus" *ngIf="list.hasAddAction"></vs-button>
+      <vs-button model="icon" icon="times" *ngIf="list.hasDeleteAction"></vs-button> -->
+    </div>
+  </div>
+</ng-template>
