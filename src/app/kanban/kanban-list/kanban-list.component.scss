@@ -47,6 +47,10 @@ vs-kanban-list {
     flex: auto;
     align-items: center;
     margin: 0;
+    cursor: context-menu;
+    > vs-icon[model=aux_title]:first-of-type {
+      padding: 2px;
+    }
   }
   .vs-kanban-actions {
     display: flex;

@@ -1,5 +1,8 @@
-import { Component, Input, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Subscription } from 'rxjs';
 
+import { IKanbanInternalListEvent, KanbanInternalListEventEnum, KanbanInternalListService } from '../kanban-internal-list.service';
 import { VsKanbanService } from '../kanban.service';
 import { VsKanbanCard } from '../tokens/card.token';
 import { VsKanbanDataSource } from '../tokens/kanban-data-source';
@@ -11,7 +14,7 @@ import { VsKanbanList } from '../tokens/list.token';
   styleUrls: ['./kanban-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class KanbanListComponent implements OnInit {
+export class KanbanListComponent implements OnInit, OnDestroy {
   private internalService: VsKanbanService;
   private internalPageSize = 5;
 
@@ -47,14 +50,17 @@ export class KanbanListComponent implements OnInit {
   @Input() cardDragPlaceholderTemplate: TemplateRef<any>;
 
   private internalList: VsKanbanList;
+  isLoading: boolean;
+  subs: Subscription[] = [];
   @Input()
   public get list(): VsKanbanList {
     return this.internalList;
   }
   public set list(value: VsKanbanList) {
     this.internalList = value;
+    this.internalList.id = value.id || value.title;
     if (this.dataSource) {
-      this.dataSource.listId = value.id || value.title;
+      this.dataSource.listId = this.internalList.id;
     }
   }
   @Input()
@@ -82,18 +88,60 @@ export class KanbanListComponent implements OnInit {
   }
   dataSource: VsKanbanDataSource;
 
-  constructor() { }
+  constructor(private internalListService: KanbanInternalListService) {
+  }
 
   ngOnInit() {
     this.dataSource = new VsKanbanDataSource(this.service, this.list.id, this.pageSize);
+    this.subs.push(this.internalListService.events.subscribe((event: IKanbanInternalListEvent) => {
+      if (event.listId !== this.internalList.id) {
+        return;
+      }
+      if (event.type === KanbanInternalListEventEnum.add) {
+        this.cardAdd(event.data.item, event.data.index);
+      }
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.dataSource.disconnect();
   }
 
   cardTrackBy(index: number, card: VsKanbanCard) {
     return card ? card.id : index;
   }
 
-  scrollChange(indexLoaded: number) {
-    // console.log('pesquisa ' + indexLoaded);
+  dropCard(event: CdkDragDrop<any>) {
+    this.isLoading = true;
+    const previousList: VsKanbanList = event.previousContainer.data;
+    const newList: VsKanbanList = event.container.data;
+    const card: VsKanbanCard = event.item.data;
+    this.service.moveCard(previousList, newList, event.previousIndex, event.currentIndex, card).subscribe(res => {
+      if (res) {
+        this.cardRemove(event.previousIndex);
+        this.internalListService.emitAdd(newList.id, card, event.currentIndex);
+        this.isLoading = false;
+      }
+    }, () => this.isLoading = false);
   }
 
+  private cardAdd(card: VsKanbanCard, index: number) {
+    if (this.dataSource) {
+      this.dataSource.addItem(card, index);
+    }
+  }
+
+  private cardRemove(index: number) {
+    if (this.dataSource) {
+      this.dataSource.removeItem(index);
+    }
+  }
+
+  listAdd(list: VsKanbanList): void {
+    this.service.listAddAction(list);
+  }
+
+  listDelete(list: VsKanbanList): void {
+    this.service.listDeleteAction(list);
+  }
 }

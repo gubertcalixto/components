@@ -17,7 +17,11 @@ export class AppComponent {
       title: 'Teste',
       icon: 'edit',
       hasAddAction: true,
-      hasDeleteAction: false
+      hasDeleteAction: true
+    }),
+    new VsKanbanList({
+      title: 'Teste 2',
+      icon: 'edit'
     })
   ] as VsKanbanList[];
 }

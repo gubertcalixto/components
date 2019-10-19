@@ -3,6 +3,7 @@ import { DataSource } from '@angular/cdk/table';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 import { VsKanbanService } from '../kanban.service';
+import { VsKanbanCard } from './card.token';
 
 export class VsKanbanDataSource extends DataSource<string | undefined> {
   public kanbanService: VsKanbanService;
@@ -13,7 +14,7 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
   private cachedData: any[] = [];
   private cachedPages = new Set<number>();
   private dataStream = new BehaviorSubject<(string | undefined)[]>(Array.from<string>({ length: 1 }));
-  private subscription = new Subscription();
+  private subscriptions: Subscription[] = [];
 
   constructor(initialKanbanService: VsKanbanService, initialListId: string | number, initialPageSize: number) {
     super();
@@ -23,7 +24,7 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
   }
 
   public connect(collectionViewer: CollectionViewer): Observable<(string | undefined)[]> {
-    this.subscription.add(collectionViewer.viewChange.subscribe((range: ListRange) => {
+    this.subscriptions.push(collectionViewer.viewChange.subscribe((range: ListRange) => {
       const pageStart = this.getPageForIndex(range.start);
       const pageEnd = this.getPageForIndex(range.end - 1);
       this.getCards(pageStart, pageEnd);
@@ -32,7 +33,7 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
   }
 
   public disconnect(): void {
-    this.subscription.unsubscribe();
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   private getPageForIndex(index: number): number {
@@ -56,12 +57,12 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
     console.log('=========== NEW SEARCH ===========');
     console.log(`Pesquisando de ${skipCount + 1} até ${skipCount + pageSize}`);
 
-    this.kanbanService.getCards(this.listId, skipCount, pageSize).subscribe(result => {
+    this.subscriptions.push(this.kanbanService.getCards(this.listId, skipCount, pageSize).subscribe(result => {
       this.totalCount = result.totalCount;
       this.initCachedData();
       this.cachedData.splice(skipCount, pageSize, ...result.items);
       this.dataStream.next(this.cachedData);
-    });
+    }));
   }
 
   private getItemsRange(pageStart: number, pageEnd: number): ListRange {
@@ -86,5 +87,17 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
     if (!this.cachedData || this.cachedData.length !== this.totalCount) {
       this.cachedData = Array.from<string>({ length: this.totalCount });
     }
+  }
+
+  addItem(item: VsKanbanCard, index: number) {
+    debugger;
+    this.cachedData.splice(index, 0, item);
+    this.dataStream.next(this.cachedData);
+  }
+
+  removeItem(index: number) {
+    debugger;
+    this.cachedData.splice(index, 1);
+    this.dataStream.next(this.cachedData);
   }
 }

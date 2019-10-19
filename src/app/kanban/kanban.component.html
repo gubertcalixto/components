@@ -3,7 +3,7 @@
         <ng-template [ngTemplateOutlet]="headerTemplate"></ng-template>
     </div>
     <div class="vs-kanban-list-wrapper">
-        <div *ngFor="let list of lists; trackBy: listTrackBy" class="vs-kanban-list-container">
+        <div *ngFor="let list of lists" class="vs-kanban-list-container">
             <vs-kanban-list [service]="service" [list]="list" [listHeaderTemplate]="listHeaderTemplate"
                 [listFooterTemplate]="listFooterTemplate" [cardHeaderTemplate]="cardHeaderTemplate"
                 [cardBodyTemplate]="cardBodyTemplate" [cardFooterTemplate]="cardFooterTemplate"

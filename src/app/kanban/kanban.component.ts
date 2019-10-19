@@ -1,4 +1,3 @@
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, Input, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -54,35 +53,5 @@ export class KanbanComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subs.forEach(s => s.unsubscribe);
-  }
-
-  dropCard(event: CdkDragDrop<any>) {
-    // console.log(event.previousContainer.data);
-    // console.log(event.container.data);
-    // console.log(event.previousIndex);
-    // console.log(event.currentIndex);
-
-    // if (event.previousContainer === event.container) {
-    //   this.moveCardInList(event.container.data, event.previousIndex, event.currentIndex);
-    // } else {
-    //   this.transferCard(event.previousContainer.data,
-    //     event.container.data,
-    //     event.previousIndex,
-    //     event.currentIndex);
-    // }
-
-    // console.log(event);
-  }
-  transferCard(oldList: VsKanbanList, newList: VsKanbanList, previousIndex: number, currentIndex: number) {
-  }
-
-  moveCardInList(list: VsKanbanList, previousIndex: number, currentIndex: number) {
-    // list.cards.splice(currentIndex, 0, list.cards[previousIndex]);
-    // previousIndex += currentIndex < previousIndex ? 1 : 0;
-    // list.cards.splice(previousIndex, 0);
-  }
-
-  listTrackBy(index: number, list: VsKanbanList) {
-    return list.id;
   }
 }
