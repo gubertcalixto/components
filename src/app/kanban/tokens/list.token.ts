@@ -11,7 +11,6 @@ export class VsKanbanList {
         this.title = list.title;
         this.icon = list.icon;
         this.data = list.data;
-        this.cards = list.cards || [];
         this.hasAddAction = list.hasAddAction;
         this.hasDeleteAction = list.hasDeleteAction;
     }

@@ -1,4 +1,4 @@
-$card-vertical-gap: 6px; // CRM <= 5
+$card-vertical-gap: 6px;
 $card-internal-gap: 8px;
 $card-background-color: #fff;
 $card-color: #000;
@@ -13,14 +13,6 @@ vs-kanban-card {
   border-radius: $card-border-radius;
   margin-top: $card-vertical-gap;
   padding: $card-internal-gap;
-  > .vs-kanban-header {
-  }
-
-  > .vs-kanban-body {
-  }
-
-  > .vs-kanban-footer {
-  }
 }
 vs-kanban-card.vs-kanban-cdk-drag-dragging {
   padding: 0;
