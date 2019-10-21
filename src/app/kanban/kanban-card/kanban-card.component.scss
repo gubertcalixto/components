@@ -5,7 +5,6 @@ $card-color: #000;
 $card-box-shadown: 5px 5px 15px 0px #aaa;
 $card-border-radius: 4px;
 vs-kanban-card {
-  
   display: flex;
   flex-direction: column;
   position: relative;
@@ -26,9 +25,12 @@ vs-kanban-card {
 vs-kanban-card.vs-kanban-cdk-drag-dragging {
   padding: 0;
 }
-vs-kanban-card.cdk-drag-preview {
+.cdk-drag-preview {
   border: 1px solid #dcdcdc;
   -webkit-box-shadow: $card-box-shadown;
   -moz-box-shadow: $card-box-shadown;
   box-shadow: $card-box-shadown;
+  vs-kanban-card {
+    margin: 0;
+  }
 }

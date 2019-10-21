@@ -3,7 +3,6 @@ export class VsKanbanList {
     title: string;
     icon?: string;
     data?: any;
-    cards?: string[] = [];
     hasAddAction?: boolean;
     hasDeleteAction?: boolean;
 
