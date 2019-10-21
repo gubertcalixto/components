@@ -2,14 +2,12 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import {
-  IKanbanInternalListEvent,
-  KanbanInternalListEventEnum,
-  KanbanInternalListService,
-} from '../kanban-internal-list.service';
+import { KanbanInternalListService } from '../kanban-internal-list.service';
 import { VsKanbanService } from '../kanban.service';
 import { VsKanbanCard } from '../tokens/card.token';
 import { VsKanbanDataSource } from '../tokens/kanban-data-source';
+import { IKanbanInternalListEvent } from '../tokens/kanban-list-event';
+import { KanbanInternalListEventEnum } from '../tokens/kanban-list-event.enum';
 import { VsKanbanList } from '../tokens/list.token';
 
 @Component({
@@ -54,7 +52,7 @@ export class KanbanListComponent implements OnInit, OnDestroy {
   @Input() cardDragPlaceholderTemplate: TemplateRef<any>;
 
   private internalList: VsKanbanList;
-  isLoading: boolean;
+  isLoading = true;
   subs: Subscription[] = [];
   @Input()
   public get list(): VsKanbanList {
@@ -102,13 +100,12 @@ export class KanbanListComponent implements OnInit, OnDestroy {
         return;
       }
       if (event.type === KanbanInternalListEventEnum.Add) {
-        console.log('Add ' + this.internalList.title);
         this.cardAdd(event.data.item, event.data.index);
       } else if (event.type === KanbanInternalListEventEnum.Remove) {
-        console.log('Remove ' + this.internalList.title);
         this.cardRemove(event.data.index);
       }
     }));
+    this.isLoading = false;
   }
 
   ngOnDestroy(): void {

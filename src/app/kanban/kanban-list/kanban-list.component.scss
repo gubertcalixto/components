@@ -26,8 +26,13 @@ vs-kanban-list {
     display: flex;
     flex: auto;
     flex-direction: column;
-    > .vs-kanban-no-content {
-    }
+  }
+
+  .vs-kanban-loading {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
   }
 
   > .vs-kanban-footer {
@@ -48,7 +53,7 @@ vs-kanban-list {
     align-items: center;
     margin: 0;
     cursor: context-menu;
-    > vs-icon[model=aux_title]:first-of-type {
+    > vs-icon[model="aux_title"]:first-of-type {
       padding: 2px;
     }
   }

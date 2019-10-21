@@ -55,9 +55,6 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
     const range = this.getItemsRange(pageStart, pageEnd);
     const skipCount = range.start;
     const pageSize = range.end - range.start;
-    console.log('=========== NEW SEARCH ===========');
-    console.log(this.listId);
-    console.log(`Pesquisando de ${skipCount + 1} até ${skipCount + pageSize}`);
 
     this.subscriptions.push(this.kanbanService.getCards(this.listId, skipCount, pageSize).subscribe(result => {
       this.totalCount = result.totalCount;

@@ -2,17 +2,8 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
 import { VsKanbanCard } from './tokens/card.token';
-
-export enum KanbanInternalListEventEnum {
-  Add = 0,
-  Remove = 1
-}
-
-export interface IKanbanInternalListEvent {
-  listId: string | number;
-  type: KanbanInternalListEventEnum;
-  data: any;
-}
+import { IKanbanInternalListEvent } from './tokens/kanban-list-event';
+import { KanbanInternalListEventEnum } from './tokens/kanban-list-event.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +16,7 @@ export class KanbanInternalListService {
     const event: IKanbanInternalListEvent = {
       listId,
       type: KanbanInternalListEventEnum.Add,
-      data: {
-        item, index
-      }
+      data: { item, index }
     };
     this.events.next(event);
   }
