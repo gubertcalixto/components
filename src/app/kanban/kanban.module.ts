@@ -2,11 +2,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { VsButtonModule, VsIconModule } from '@viasoft/components';
 
-import { KanbanComponent } from './kanban.component';
-import { KanbanListComponent } from './kanban-list/kanban-list.component';
 import { KanbanCardComponent } from './kanban-card/kanban-card.component';
+import { KanbanListComponent } from './kanban-list/kanban-list.component';
+import { KanbanComponent } from './kanban.component';
 
 @NgModule({
   declarations: [KanbanComponent, KanbanListComponent, KanbanCardComponent],
@@ -16,8 +15,8 @@ import { KanbanCardComponent } from './kanban-card/kanban-card.component';
     DragDropModule,
     ScrollingModule,
 
-    VsButtonModule,
-    VsIconModule
+    // VsButtonModule,
+    // VsIconModule
   ],
   exports: [KanbanComponent]
 })

@@ -90,13 +90,11 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
   }
 
   addItem(item: VsKanbanCard, index: number) {
-    debugger;
     this.cachedData.splice(index, 0, item);
     this.dataStream.next(this.cachedData);
   }
 
   removeItem(index: number) {
-    debugger;
     this.cachedData.splice(index, 1);
     this.dataStream.next(this.cachedData);
   }

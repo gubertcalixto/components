@@ -2,7 +2,11 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { IKanbanInternalListEvent, KanbanInternalListEventEnum, KanbanInternalListService } from '../kanban-internal-list.service';
+import {
+  IKanbanInternalListEvent,
+  KanbanInternalListEventEnum,
+  KanbanInternalListService,
+} from '../kanban-internal-list.service';
 import { VsKanbanService } from '../kanban.service';
 import { VsKanbanCard } from '../tokens/card.token';
 import { VsKanbanDataSource } from '../tokens/kanban-data-source';
@@ -97,8 +101,12 @@ export class KanbanListComponent implements OnInit, OnDestroy {
       if (event.listId !== this.internalList.id) {
         return;
       }
-      if (event.type === KanbanInternalListEventEnum.add) {
+      if (event.type === KanbanInternalListEventEnum.Add) {
+        console.log('Add ' + this.internalList.title);
         this.cardAdd(event.data.item, event.data.index);
+      } else if (event.type === KanbanInternalListEventEnum.Remove) {
+        console.log('Remove ' + this.internalList.title);
+        this.cardRemove(event.data.index);
       }
     }));
   }
@@ -116,13 +124,13 @@ export class KanbanListComponent implements OnInit, OnDestroy {
     const previousList: VsKanbanList = event.previousContainer.data;
     const newList: VsKanbanList = event.container.data;
     const card: VsKanbanCard = event.item.data;
-    this.service.moveCard(previousList, newList, event.previousIndex, event.currentIndex, card).subscribe(res => {
+    this.subs.push(this.service.moveCard(previousList, newList, event.previousIndex, event.currentIndex, card).subscribe(res => {
       if (res) {
-        this.cardRemove(event.previousIndex);
+        this.internalListService.emitRemove(previousList.id, event.previousIndex);
         this.internalListService.emitAdd(newList.id, card, event.currentIndex);
         this.isLoading = false;
       }
-    }, () => this.isLoading = false);
+    }, () => this.isLoading = false));
   }
 
   private cardAdd(card: VsKanbanCard, index: number) {

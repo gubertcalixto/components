@@ -11,7 +11,7 @@
     [cdkDragStartDelay]="cardDragDelay"
   -->
   <div *cdkVirtualFor="let card of dataSource; trackBy: cardTrackBy" cdkDrag [cdkDragData]="card"
-    cdkDragBoundary=".board" [ngClass]="{'draggable': !card || card.canMove}" [cdkDragDisabled]="card && !card.canMove">
+    [ngClass]="{'draggable': !card || card.canMove}" [cdkDragDisabled]="card && !card.canMove">
     <vs-kanban-card *ngIf="card" [card]="card" [cardHeaderTemplate]="cardHeaderTemplate"
       [cardBodyTemplate]="cardBodyTemplate" [cardFooterTemplate]="cardFooterTemplate"
       [cardDragPlaceholderTemplate]="cardDragPlaceholderTemplate">
@@ -29,12 +29,12 @@
 <ng-template #listHeaderDefaultTemplate let-list="list">
   <div class="vs-kanban-list-header">
     <h3 class="vs-kanban-info">
-      <vs-icon model="aux_title" *ngIf="list.icon" [icon]="list.icon"></vs-icon>
+      <!-- <vs-icon model="aux_title" *ngIf="list.icon" [icon]="list.icon"></vs-icon> -->
       {{list.title}}
     </h3>
     <div *ngIf="list.hasAddAction || list.hasDeleteAction">
-      <vs-button model="icon" (click)="listAdd(list)" icon="plus" *ngIf="list.hasAddAction"></vs-button>
-      <vs-button model="icon" (click)="listDelete(list)" icon="trash-alt" *ngIf="list.hasDeleteAction"></vs-button>
+      <!-- <vs-button model="icon" (click)="listAdd(list)" icon="plus" *ngIf="list.hasAddAction"></vs-button>
+      <vs-button model="icon" (click)="listDelete(list)" icon="trash-alt" *ngIf="list.hasDeleteAction"></vs-button> -->
     </div>
   </div>
 </ng-template>

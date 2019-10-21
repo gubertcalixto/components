@@ -4,7 +4,8 @@ import { Subject } from 'rxjs';
 import { VsKanbanCard } from './tokens/card.token';
 
 export enum KanbanInternalListEventEnum {
-  add = 0
+  Add = 0,
+  Remove = 1
 }
 
 export interface IKanbanInternalListEvent {
@@ -23,10 +24,18 @@ export class KanbanInternalListService {
   emitAdd(listId: string | number, item: VsKanbanCard, index: number) {
     const event: IKanbanInternalListEvent = {
       listId,
-      type: KanbanInternalListEventEnum.add,
+      type: KanbanInternalListEventEnum.Add,
       data: {
         item, index
       }
+    };
+    this.events.next(event);
+  }
+  emitRemove(listId: string | number, index: number) {
+    const event: IKanbanInternalListEvent = {
+      listId,
+      type: KanbanInternalListEventEnum.Remove,
+      data: { index }
     };
     this.events.next(event);
   }
