@@ -41,16 +41,18 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
     return Math.floor(index / this.pageSize);
   }
 
-  private getCards(pageStart: number, pageEnd: number): void {
-    let needToRequest = false;
-    for (let i = pageStart; i <= pageEnd; i++) {
-      if (!this.cachedPages.has(i)) {
-        needToRequest = true;
-        break;
+  private getCards(pageStart: number, pageEnd: number, ignoreCache = false): void {
+    if (!ignoreCache) {
+      let needToRequest = false;
+      for (let i = pageStart; i <= pageEnd; i++) {
+        if (!this.cachedPages.has(i)) {
+          needToRequest = true;
+          break;
+        }
       }
-    }
-    if (!needToRequest) {
-      return;
+      if (!needToRequest) {
+        return;
+      }
     }
     const range = this.getItemsRange(pageStart, pageEnd);
     const skipCount = range.start;
@@ -92,12 +94,17 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
   }
 
   addItem(item: VsKanbanCard, index: number) {
-    this.cachedData.splice(index, 0, item);
-    this.dataStream.next(this.cachedData);
+    // this.cachedData.splice(index, 0, item);
+    // this.dataStream.next(this.cachedData);
+    const startIndex = this.getPageForIndex(index);
+    const endIndex = startIndex + 1;
+    this.getCards(startIndex, endIndex, true);
   }
 
   removeItem(index: number) {
-    this.cachedData.splice(index, 1);
-    this.dataStream.next(this.cachedData);
+    // this.cachedData.splice(index, 1);
+    // this.dataStream.next(this.cachedData);
+    const startIndex = this.getPageForIndex(index);
+    const endIndex = startIndex + 1;
   }
 }
