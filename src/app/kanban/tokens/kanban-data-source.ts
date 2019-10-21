@@ -15,6 +15,7 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
   private cachedPages = new Set<number>();
   private dataStream = new BehaviorSubject<(string | undefined)[]>(Array.from<string>({ length: 1 }));
   private subscriptions: Subscription[] = [];
+  firstRequestDone = false;
 
   constructor(initialKanbanService: VsKanbanService, initialListId: string | number, initialPageSize: number) {
     super();
@@ -55,11 +56,15 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
     const skipCount = range.start;
     const pageSize = range.end - range.start;
     console.log('=========== NEW SEARCH ===========');
+    console.log(this.listId);
     console.log(`Pesquisando de ${skipCount + 1} até ${skipCount + pageSize}`);
 
     this.subscriptions.push(this.kanbanService.getCards(this.listId, skipCount, pageSize).subscribe(result => {
       this.totalCount = result.totalCount;
-      this.initCachedData();
+      if (!this.firstRequestDone) {
+        this.firstRequestDone = !this.firstRequestDone;
+        this.initCachedData();
+      }
       this.cachedData.splice(skipCount, pageSize, ...result.items);
       this.dataStream.next(this.cachedData);
     }));
