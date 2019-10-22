@@ -17,7 +17,7 @@ vs-kanban-card {
 vs-kanban-card.vs-kanban-cdk-drag-dragging {
   padding: 0;
 }
-.cdk-drag-preview {
+.vs-kanban-placeholder.cdk-drag-preview {
   border: 1px solid #dcdcdc;
   -webkit-box-shadow: $card-box-shadown;
   -moz-box-shadow: $card-box-shadown;
