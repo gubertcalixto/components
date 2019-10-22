@@ -11,7 +11,7 @@ import { VsKanbanList } from './kanban/tokens/list.token';
 export class CustomKanbanService extends VsKanbanService {
 
   listInternal = [];
-  maxCount = 5;
+  maxCount = 50;
 
   listInternal2 = [];
   maxCount2 = 5;

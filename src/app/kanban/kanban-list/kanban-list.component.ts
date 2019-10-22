@@ -1,5 +1,6 @@
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { KanbanInternalListService } from '../kanban-internal-list.service';
@@ -19,6 +20,7 @@ import { VsKanbanList } from '../tokens/list.token';
 export class KanbanListComponent implements OnInit, OnDestroy {
   private internalService: VsKanbanService;
   private internalPageSize = 5;
+  @ViewChild(CdkVirtualScrollViewport, { static: false }) viewPort: CdkVirtualScrollViewport;
 
   /**
    * Define o template do listHeader\
@@ -121,9 +123,12 @@ export class KanbanListComponent implements OnInit, OnDestroy {
     const previousList: VsKanbanList = event.previousContainer.data;
     const newList: VsKanbanList = event.container.data;
     const card: VsKanbanCard = event.item.data;
-    this.subs.push(this.service.moveCard(previousList, newList, event.previousIndex, event.currentIndex, card).subscribe(res => {
+    const viewPortRange = this.viewPort.getRenderedRange();
+    const previousIndex = viewPortRange.start + event.previousIndex;
+    console.log(previousIndex);
+    this.subs.push(this.service.moveCard(previousList, newList, previousIndex, event.currentIndex, card).subscribe(res => {
       if (res) {
-        this.internalListService.emitMove(previousList.id, newList.id, event.previousIndex, event.currentIndex, card);
+        this.internalListService.emitMove(previousList.id, newList.id, previousIndex, event.currentIndex, card);
         this.isLoading = false;
       }
     }, () => this.isLoading = false));
