@@ -45,7 +45,7 @@ export class CustomKanbanService extends VsKanbanService {
       const maxCountToSearch = this.maxCount2 >= (skipCount + pageSize) ? skipCount + pageSize : this.maxCount2;
       const listToReturn = this.listInternal2.slice(skipCount, maxCountToSearch);
 
-      return of({ items: listToReturn, totalCount: this.maxCount });
+      return of({ items: listToReturn, totalCount: this.maxCount2 });
     }
   }
 

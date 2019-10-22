@@ -1,22 +1,20 @@
-<ng-container *ngIf="card">
-  <ng-container *ngIf="cardDragPlaceholderTemplate">
-    <div class="vs-kanban-placeholder" *cdkDragPlaceholder>
-      <ng-template [ngTemplateOutlet]="cardDragPlaceholderTemplate" [ngTemplateOutletContext]="{card: card}">
-      </ng-template>
-    </div>
-  </ng-container>
-  <div class="vs-kanban-header">
-    <ng-template [ngTemplateOutlet]="cardHeaderTemplate || cardHeaderDefaultTemplate"
-      [ngTemplateOutletContext]="{card: card}"></ng-template>
-  </div>
-  <div class="vs-kanban-body">
-    <ng-template [ngTemplateOutlet]="cardBodyTemplate || cardBodyDefaultTemplate"
-      [ngTemplateOutletContext]="{card: card}"></ng-template>
-  </div>
-  <div *ngIf="cardFooterTemplate" class="vs-kanban-footer">
-    <ng-template [ngTemplateOutlet]="cardFooterTemplate" [ngTemplateOutletContext]="{card: card}"></ng-template>
+<ng-container *ngIf="cardDragPlaceholderTemplate">
+  <div class="vs-kanban-placeholder" *cdkDragPlaceholder>
+    <ng-template [ngTemplateOutlet]="cardDragPlaceholderTemplate" [ngTemplateOutletContext]="{card: card}">
+    </ng-template>
   </div>
 </ng-container>
+<div class="vs-kanban-header">
+  <ng-template [ngTemplateOutlet]="cardHeaderTemplate || cardHeaderDefaultTemplate"
+    [ngTemplateOutletContext]="{card: card}"></ng-template>
+</div>
+<div class="vs-kanban-body">
+  <ng-template [ngTemplateOutlet]="cardBodyTemplate || cardBodyDefaultTemplate"
+    [ngTemplateOutletContext]="{card: card}"></ng-template>
+</div>
+<div *ngIf="cardFooterTemplate" class="vs-kanban-footer">
+  <ng-template [ngTemplateOutlet]="cardFooterTemplate" [ngTemplateOutletContext]="{card: card}"></ng-template>
+</div>
 
 <ng-template #cardHeaderDefaultTemplate let-card="card">{{card.title}}</ng-template>
 <ng-template #cardBodyDefaultTemplate let-card="card">{{card.description}}</ng-template>
