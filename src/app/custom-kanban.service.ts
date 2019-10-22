@@ -58,9 +58,6 @@ export class CustomKanbanService extends VsKanbanService {
       this.maxCount2 -= 1;
       this.listInternal2.splice(previousIndex, 1);
     }
-    if (previousList.id === newList.id && currentIndex >= previousIndex) {
-      currentIndex -= 1;
-    }
     if (newList.id === 1) {
       this.maxCount += 1;
       this.listInternal.splice(currentIndex, 0, card);

@@ -102,13 +102,4 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
     this.cachedData.splice(index, 1);
     this.dataStream.next(this.cachedData);
   }
-
-  moveItem(previousIndex: number, currentIndex: number) {
-    const itemToAdd = this.cachedData[previousIndex];
-    this.cachedData.splice(previousIndex, 1);
-    if (currentIndex >= previousIndex) {
-      currentIndex -= 1;
-    }
-    this.cachedData.splice(currentIndex, 0, itemToAdd);
-  }
 }

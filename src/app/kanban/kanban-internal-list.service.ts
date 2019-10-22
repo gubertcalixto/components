@@ -21,9 +21,7 @@ export class KanbanInternalListService {
       }
     };
     this.events.next(removeEvent);
-    if (fromListId === toListId && currentIndex >= previousIndex) {
-      currentIndex -= 1;
-    }
+
     const addEvent: IKanbanInternalListEvent = {
       listId: toListId,
       type: KanbanInternalListEventEnum.Add,
