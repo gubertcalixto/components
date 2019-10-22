@@ -12,20 +12,26 @@ export class KanbanInternalListService {
   events = new Subject<any>();
   constructor() { }
 
-  emitAdd(listId: string | number, item: VsKanbanCard, index: number) {
-    const event: IKanbanInternalListEvent = {
-      listId,
-      type: KanbanInternalListEventEnum.Add,
-      data: { item, index }
-    };
-    this.events.next(event);
-  }
-  emitRemove(listId: string | number, index: number) {
-    const event: IKanbanInternalListEvent = {
-      listId,
+  emitMove(fromListId: string | number, toListId: string | number, previousIndex: number, currentIndex: number, card: VsKanbanCard): void {
+    const removeEvent: IKanbanInternalListEvent = {
+      listId: fromListId,
       type: KanbanInternalListEventEnum.Remove,
-      data: { index }
+      data: {
+        index: previousIndex
+      }
     };
-    this.events.next(event);
+    this.events.next(removeEvent);
+    if (fromListId === toListId && currentIndex >= previousIndex) {
+      currentIndex -= 1;
+    }
+    const addEvent: IKanbanInternalListEvent = {
+      listId: toListId,
+      type: KanbanInternalListEventEnum.Add,
+      data: {
+        index: currentIndex,
+        item: card
+      }
+    };
+    this.events.next(addEvent);
   }
 }

@@ -123,8 +123,7 @@ export class KanbanListComponent implements OnInit, OnDestroy {
     const card: VsKanbanCard = event.item.data;
     this.subs.push(this.service.moveCard(previousList, newList, event.previousIndex, event.currentIndex, card).subscribe(res => {
       if (res) {
-        this.internalListService.emitRemove(previousList.id, event.previousIndex);
-        this.internalListService.emitAdd(newList.id, card, event.currentIndex);
+        this.internalListService.emitMove(previousList.id, newList.id, event.previousIndex, event.currentIndex, card);
         this.isLoading = false;
       }
     }, () => this.isLoading = false));

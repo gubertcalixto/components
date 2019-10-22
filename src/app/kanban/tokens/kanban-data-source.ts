@@ -94,17 +94,22 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
   }
 
   addItem(item: VsKanbanCard, index: number) {
-    // this.cachedData.splice(index, 0, item);
-    // this.dataStream.next(this.cachedData);
-    const startIndex = this.getPageForIndex(index);
-    const endIndex = startIndex + 1;
-    this.getCards(startIndex, endIndex, true);
+    this.cachedData.splice(index, 0, item);
+    this.dataStream.next(this.cachedData);
   }
 
   removeItem(index: number) {
-    // this.cachedData.splice(index, 1);
-    // this.dataStream.next(this.cachedData);
-    const startIndex = this.getPageForIndex(index);
-    const endIndex = startIndex + 1;
+    this.cachedData.splice(index, 1);
+    this.dataStream.next(this.cachedData);
+  }
+
+  moveItem(previousIndex: number, currentIndex: number) {
+    const itemToAdd = this.cachedData[previousIndex];
+    this.cachedData.splice(previousIndex, 1);
+    if (currentIndex >= previousIndex) {
+      currentIndex -= 1;
+    }
+    console.log(itemToAdd);
+    this.cachedData.splice(currentIndex, 0, itemToAdd);
   }
 }

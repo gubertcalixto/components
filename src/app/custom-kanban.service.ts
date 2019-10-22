@@ -10,26 +10,35 @@ import { VsKanbanList } from './kanban/tokens/list.token';
 })
 export class CustomKanbanService extends VsKanbanService {
 
-  getCards(listId: string | number, skipCount: number, pageSize: number): Observable<any> {
-    const maxCount = 50;
+  listInternal = [];
+  maxCount = 50;
 
-    const newList = [];
-    const maxCountToSearch = maxCount >= (skipCount + pageSize) ? skipCount + pageSize : maxCount;
-    for (let i = skipCount; i < maxCountToSearch; i++) {
-      newList.push(new VsKanbanCard({
-        id: `${listId} ${i}`,
-        title: `${listId} ${i}`,
-        description: `${listId} ${i} desc`
+  constructor() {
+    super();
+
+    for (let i = 0; i < this.maxCount; i++) {
+      this.listInternal.push(new VsKanbanCard({
+        id: i,
+        title: `Item ${i}`,
+        description: `Descrição ${i}`
       }));
     }
-    return of({
-      items: newList,
-      totalCount: maxCount
-    });
+  }
+
+  getCards(listId: string | number, skipCount: number, pageSize: number): Observable<any> {
+    const maxCountToSearch = this.maxCount >= (skipCount + pageSize) ? skipCount + pageSize : this.maxCount;
+    const listToReturn = this.listInternal.slice(skipCount, maxCountToSearch);
+
+    return of({ items: listToReturn, totalCount: this.maxCount });
   }
 
   moveCard(previousList: VsKanbanList, newList: VsKanbanList,
     previousIndex: number, currentIndex: number, card: VsKanbanCard): Observable<boolean> {
+    this.listInternal.splice(previousIndex, 1);
+    if (currentIndex >= previousIndex) {
+      currentIndex -= 1;
+    }
+    this.listInternal.splice(currentIndex, 0, card);
     return of(true);
   }
 
