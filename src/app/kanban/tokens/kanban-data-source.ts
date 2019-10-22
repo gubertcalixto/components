@@ -41,6 +41,24 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
     return Math.floor(index / this.pageSize);
   }
 
+  private getItemsRange(pageStart: number, pageEnd: number): ListRange {
+    for (let i = pageStart; i <= pageEnd; i++) {
+      if (this.cachedPages.has(i)) {
+        if (pageStart === i) {
+          pageStart += 1;
+        } else if (pageEnd === i) {
+          pageEnd -= 1;
+        }
+      } else {
+        this.cachedPages.add(i);
+      }
+    }
+    return {
+      start: pageStart * this.pageSize,
+      end: pageEnd <= pageStart ? pageStart * this.pageSize + this.pageSize : (1 + pageEnd) * this.pageSize
+    } as ListRange;
+  }
+
   private getCards(pageStart: number, pageEnd: number, ignoreCache = false): void {
     if (!ignoreCache) {
       let needToRequest = false;
@@ -69,24 +87,6 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
     }));
   }
 
-  private getItemsRange(pageStart: number, pageEnd: number): ListRange {
-    for (let i = pageStart; i <= pageEnd; i++) {
-      if (this.cachedPages.has(i)) {
-        if (pageStart === i) {
-          pageStart += 1;
-        } else if (pageEnd === i) {
-          pageEnd -= 1;
-        }
-      } else {
-        this.cachedPages.add(i);
-      }
-    }
-    return {
-      start: pageStart * this.pageSize,
-      end: pageEnd <= pageStart ? pageStart * this.pageSize + this.pageSize : (1 + pageEnd) * this.pageSize
-    } as ListRange;
-  }
-
   private initCachedData() {
     if (!this.cachedData || this.cachedData.length !== this.totalCount) {
       this.cachedData = Array.from<string>({ length: this.totalCount });
@@ -109,7 +109,6 @@ export class VsKanbanDataSource extends DataSource<string | undefined> {
     if (currentIndex >= previousIndex) {
       currentIndex -= 1;
     }
-    console.log(itemToAdd);
     this.cachedData.splice(currentIndex, 0, itemToAdd);
   }
 }
