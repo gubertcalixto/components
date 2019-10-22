@@ -5,13 +5,13 @@
 </div>
 <cdk-virtual-scroll-viewport *ngIf="dataSource && !isLoading" [itemSize]="cardSize" class="vs-kanban-content"
   [id]="list.id || list.title" cdkDropList [cdkDropListData]="list" (cdkDropListDropped)="dropCard($event)">
-  <div class="vs-kanban-no-content" *ngIf="noContent">Sem Resultados</div>
   <!-- 
     # TODO Added in Angular 8
     [cdkDragStartDelay]="cardDragDelay"
   -->
   <div *cdkVirtualFor="let card of dataSource; trackBy: cardTrackBy" cdkDrag [cdkDragData]="card"
-    [ngClass]="{'draggable': !card || card.canMove}" [cdkDragDisabled]="card && !card.canMove">
+    class="vs-kanban-placeholder" [ngClass]="{'draggable': !card || card.canMove}"
+    [cdkDragDisabled]="card && !card.canMove">
     <vs-kanban-card *ngIf="card" [card]="card" [cardHeaderTemplate]="cardHeaderTemplate"
       [cardBodyTemplate]="cardBodyTemplate" [cardFooterTemplate]="cardFooterTemplate"
       [cardDragPlaceholderTemplate]="cardDragPlaceholderTemplate">
