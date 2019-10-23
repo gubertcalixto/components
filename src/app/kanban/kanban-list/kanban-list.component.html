@@ -24,7 +24,7 @@
   </div>
 </cdk-virtual-scroll-viewport>
 <div *ngIf="isLoading" class="loading">
-  <vs-spinner></vs-spinner>
+  Loading
 </div>
 <div *ngIf="listFooterTemplate" class="footer">
   <ng-template [ngTemplateOutlet]="listFooterTemplate" [ngTemplateOutletContext]="{list: list}">
@@ -34,12 +34,9 @@
 <ng-template #listHeaderDefaultTemplate let-list="list">
   <div class="list-header">
     <h3 class="info">
-      <vs-icon model="aux_title" *ngIf="list.icon" [icon]="list.icon"></vs-icon>
       {{list.title}}
     </h3>
     <div *ngIf="list.hasAddAction || list.hasDeleteAction">
-      <vs-button model="icon" (click)="listAdd(list)" icon="plus" *ngIf="list.hasAddAction"></vs-button>
-      <vs-button model="icon" (click)="listDelete(list)" icon="trash-alt" *ngIf="list.hasDeleteAction"></vs-button>
     </div>
   </div>
 </ng-template>
