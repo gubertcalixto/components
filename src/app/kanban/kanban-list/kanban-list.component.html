@@ -1,9 +1,9 @@
-<div class="vs-kanban-header">
+<div class="header">
   <ng-template [ngTemplateOutlet]="listHeaderTemplate || listHeaderDefaultTemplate"
     [ngTemplateOutletContext]="{list: list}">
   </ng-template>
 </div>
-<cdk-virtual-scroll-viewport *ngIf="dataSource && !isLoading" [itemSize]="cardSize" class="vs-kanban-content"
+<cdk-virtual-scroll-viewport *ngIf="dataSource && !isLoading" [itemSize]="cardSize" class="content"
   [id]="list.id || list.title" cdkDropList [cdkDropListData]="list" (cdkDropListDropped)="dropCard($event)">
   <!-- 
     # TODO Added in Angular 8
@@ -12,29 +12,34 @@
   <div *cdkVirtualFor="let card of dataSource; trackBy: cardTrackBy" cdkDrag [cdkDragData]="card"
     class="vs-kanban-placeholder" [ngClass]="{'draggable': !card || card.canMove}"
     [cdkDragDisabled]="card && !card.canMove">
+    <ng-container *ngIf="cardDragPlaceholderTemplate">
+      <div class="vs-kanban-placeholder" *cdkDragPlaceholder>
+        <ng-template [ngTemplateOutlet]="cardDragPlaceholderTemplate" [ngTemplateOutletContext]="{card: card}">
+        </ng-template>
+      </div>
+    </ng-container>
     <vs-kanban-card *ngIf="card" [card]="card" [cardHeaderTemplate]="cardHeaderTemplate"
-      [cardBodyTemplate]="cardBodyTemplate" [cardFooterTemplate]="cardFooterTemplate"
-      [cardDragPlaceholderTemplate]="cardDragPlaceholderTemplate">
+      [cardBodyTemplate]="cardBodyTemplate" [cardFooterTemplate]="cardFooterTemplate">
     </vs-kanban-card>
   </div>
 </cdk-virtual-scroll-viewport>
-<div *ngIf="isLoading" class="vs-kanban-loading">
-  Loading...
+<div *ngIf="isLoading" class="loading">
+  <vs-spinner></vs-spinner>
 </div>
-<div *ngIf="listFooterTemplate" class="vs-kanban-footer">
+<div *ngIf="listFooterTemplate" class="footer">
   <ng-template [ngTemplateOutlet]="listFooterTemplate" [ngTemplateOutletContext]="{list: list}">
   </ng-template>
 </div>
 
 <ng-template #listHeaderDefaultTemplate let-list="list">
-  <div class="vs-kanban-list-header">
-    <h3 class="vs-kanban-info">
-      <!-- <vs-icon model="aux_title" *ngIf="list.icon" [icon]="list.icon"></vs-icon> -->
+  <div class="list-header">
+    <h3 class="info">
+      <vs-icon model="aux_title" *ngIf="list.icon" [icon]="list.icon"></vs-icon>
       {{list.title}}
     </h3>
     <div *ngIf="list.hasAddAction || list.hasDeleteAction">
-      <!-- <vs-button model="icon" (click)="listAdd(list)" icon="plus" *ngIf="list.hasAddAction"></vs-button>
-      <vs-button model="icon" (click)="listDelete(list)" icon="trash-alt" *ngIf="list.hasDeleteAction"></vs-button> -->
+      <vs-button model="icon" (click)="listAdd(list)" icon="plus" *ngIf="list.hasAddAction"></vs-button>
+      <vs-button model="icon" (click)="listDelete(list)" icon="trash-alt" *ngIf="list.hasDeleteAction"></vs-button>
     </div>
   </div>
 </ng-template>

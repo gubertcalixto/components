@@ -69,10 +69,8 @@ export class CustomKanbanService extends VsKanbanService {
   }
 
   listAddAction(list: VsKanbanList) {
-    console.log(`Add para ${list.title}`);
   }
 
   listDeleteAction(list: VsKanbanList) {
-    console.log(`Delete para ${list.title}`);
   }
 }

@@ -27,8 +27,8 @@ export class KanbanListComponent implements OnInit, OnDestroy {
    * **Default**
    * ```
    * <ng-template #template let-title="title">{{title}}</ng-template>
-   *    <div class="vs-kanban-list-header">
-   *      <h3 class="vs-kanban-info">{{list.title}}</h3>
+   *    <div class="list-header">
+   *      <h3 class="info">{{list.title}}</h3>
    *      <div *ngIf="list.hasAddAction || list.hasDeleteAction">
    *          <button *ngIf="list.hasAddAction">add</button>
    *          <button *ngIf="list.hasDeleteAction">hasDeleteAction</button>
@@ -51,6 +51,12 @@ export class KanbanListComponent implements OnInit, OnDestroy {
   @Input() cardHeaderTemplate: TemplateRef<any>;
   @Input() cardBodyTemplate: TemplateRef<any>;
   @Input() cardFooterTemplate: TemplateRef<any>;
+  /**
+   * Define o template do card ao ser arrastado (float card)\
+   * **Default** None\
+   * **Variáveis disponíveis:**
+   * - card
+   */
   @Input() cardDragPlaceholderTemplate: TemplateRef<any>;
 
   private internalList: VsKanbanList;
@@ -125,7 +131,6 @@ export class KanbanListComponent implements OnInit, OnDestroy {
     const card: VsKanbanCard = event.item.data;
     const viewPortRange = this.viewPort.getRenderedRange();
     const previousIndex = viewPortRange.start + event.previousIndex;
-    console.log(previousIndex);
     this.subs.push(this.service.moveCard(previousList, newList, previousIndex, event.currentIndex, card).subscribe(res => {
       if (res) {
         this.internalListService.emitMove(previousList.id, newList.id, previousIndex, event.currentIndex, card);

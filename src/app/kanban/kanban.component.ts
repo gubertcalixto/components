@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, Input, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnDestroy, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { VsKanbanService } from './kanban.service';
@@ -9,9 +9,10 @@ import { VsKanbanList } from './tokens/list.token';
 @Component({
   selector: 'vs-kanban',
   templateUrl: './kanban.component.html',
-  styleUrls: ['./kanban.component.scss']
+  styleUrls: ['./kanban.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class KanbanComponent implements OnInit, OnDestroy {
+export class KanbanComponent implements OnDestroy {
   cardList: VsKanbanCard[] = [];
   cardDragDelay = 0;
   subs: Subscription[] = [];
@@ -46,9 +47,6 @@ export class KanbanComponent implements OnInit, OnDestroy {
   constructor(breakpointObserver: BreakpointObserver) {
     this.subs.push(breakpointObserver.observe([Breakpoints.HandsetPortrait])
       .subscribe(match => this.cardDragDelay = match.matches ? 250 : 0));
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy(): void {

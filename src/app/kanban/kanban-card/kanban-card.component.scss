@@ -14,7 +14,7 @@ vs-kanban-card {
   margin-top: $card-vertical-gap;
   padding: $card-internal-gap;
 }
-vs-kanban-card.vs-kanban-cdk-drag-dragging {
+.vs-kanban-placeholder.cdk-drag-dragging {
   padding: 0;
 }
 .vs-kanban-placeholder.cdk-drag-preview {

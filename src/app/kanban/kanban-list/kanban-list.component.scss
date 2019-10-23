@@ -15,70 +15,46 @@ vs-kanban-list {
   color: #000;
   border-radius: $list-border-radius;
 
-  > .vs-kanban-header {
+  > .header {
     display: flex;
     flex: initial;
     padding: $list-header-internal-gap;
+
+    // #region Header List
+    > .list-header {
+      display: flex;
+      flex-flow: row wrap;
+      flex: auto;
+      > .info {
+        display: flex;
+        flex: auto;
+        align-items: center;
+        margin: 0;
+        cursor: context-menu;
+        > vs-icon[model="aux_title"]:first-of-type {
+          padding: 2px;
+        }
+      }
+    }
+    // #endregion Header List
   }
 
-  > .vs-kanban-content {
+  > .content {
     display: flex;
     flex: auto;
     flex-direction: column;
   }
 
-  .vs-kanban-loading {
+  > .loading {
     display: flex;
     flex: 1;
     align-items: center;
     justify-content: center;
   }
 
-  > .vs-kanban-footer {
+  > .footer {
     display: flex;
     flex: initial;
     padding: $list-footer-internal-gap;
   }
-
-  // #region Header List
-  .vs-kanban-list-header {
-    display: flex;
-    flex-flow: row wrap;
-    flex: auto;
-    .vs-kanban-info {
-      display: flex;
-      flex: auto;
-      align-items: center;
-      margin: 0;
-      cursor: context-menu;
-      > vs-icon[model="aux_title"]:first-of-type {
-        padding: 2px;
-      }
-    }
-    .vs-kanban-actions {
-      display: flex;
-      flex: initial;
-    }
-  }
-  // #endregion Header List
 }
-.vs-kanban-list-header {
-  display: flex;
-  flex-flow: row wrap;
-  flex: auto;
-  .vs-kanban-info {
-    display: flex;
-    flex: auto;
-    align-items: center;
-    margin: 0;
-    cursor: context-menu;
-    > vs-icon[model="aux_title"]:first-of-type {
-      padding: 2px;
-    }
-  }
-  .vs-kanban-actions {
-    display: flex;
-    flex: initial;
-  }
-}
-// #endregion Header List
