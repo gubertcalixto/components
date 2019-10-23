@@ -128,12 +128,16 @@ export class KanbanListComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     const previousList: VsKanbanList = event.previousContainer.data;
     const newList: VsKanbanList = event.container.data;
-    const card: VsKanbanCard = event.item.data;
-    const viewPortRange = this.viewPort.getRenderedRange();
-    const previousIndex = viewPortRange.start + event.previousIndex;
-    this.subs.push(this.service.moveCard(previousList, newList, previousIndex, event.currentIndex, card).subscribe(res => {
+    const card: VsKanbanCard = event.item.data.card;
+    const previousViewPort: CdkVirtualScrollViewport = (event.item.data.viewport);
+    const currentViewPortRange = this.viewPort.getRenderedRange();
+    const previousViewPortRange = previousViewPort.getRenderedRange();
+    const previousIndex = previousViewPortRange.start + event.previousIndex;
+    const currentIndex = currentViewPortRange.start + event.currentIndex;
+
+    this.subs.push(this.service.moveCard(previousList, newList, previousIndex, currentIndex, card).subscribe(res => {
       if (res) {
-        this.internalListService.emitMove(previousList.id, newList.id, previousIndex, event.currentIndex, card);
+        this.internalListService.emitMove(previousList.id, newList.id, previousIndex, currentIndex, card);
         this.isLoading = false;
       }
     }, () => this.isLoading = false));
