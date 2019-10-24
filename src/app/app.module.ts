@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,11 +25,12 @@ import { InputComponent } from './input/input.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    MatButtonModule,
 
+    MatButtonModule,
     MatTooltipModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTabsModule,
     NgxMaskModule.forRoot(),
 
     AppRoutingModule
