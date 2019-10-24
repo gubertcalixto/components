@@ -138,8 +138,8 @@ export class KanbanListComponent implements OnInit, OnDestroy {
     this.subs.push(this.service.moveCard(previousList, newList, previousIndex, currentIndex, card).subscribe(res => {
       if (res) {
         this.internalListService.emitMove(previousList.id, newList.id, previousIndex, currentIndex, card);
-        this.isLoading = false;
       }
+      this.isLoading = false;
     }, () => this.isLoading = false));
   }
 
