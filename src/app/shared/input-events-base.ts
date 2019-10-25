@@ -13,6 +13,5 @@ export abstract class InputEventsBase extends InputBase {
         if (field && value) {
             field.setValue(value);
         }
-        this.changeEvent.emit(value);
     }
 }

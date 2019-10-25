@@ -101,8 +101,8 @@ export class InputComponent extends InputEventsBase implements AfterContentInit,
   }
 
   modelValueChange(event: any): void {
-    this.valueChange.emit(event);
     this.setValueToReactiveFormField(event);
+    this.changeEvent.emit(event);
     if (this.maskShouldUpdate) {
       this.getCurrentMask();
     }
