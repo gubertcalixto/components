@@ -10,8 +10,8 @@ import {
 } from '@angular/core';
 import { FormArrayName, FormGroupDirective, FormGroupName } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
-
-import { FieldBaseComponent, resolveBooleanFromInputs } from '../field-base/field-base.component';
+import { resolveBooleanFromInputs } from '@shared/input-base';
+import { InputEventsBase } from '@shared/input-events-base';
 
 type MaskType = 'CELL' | 'CPF' | 'CNPJCPF' | 'CNPJ' | 'PHONE' | 'ZIPCODE' | 'DATETIME' | 'CURRENCY' | string;
 type FieldType = 'email' | 'number' | 'password' | 'tel' | 'text';
@@ -22,7 +22,7 @@ type FieldType = 'email' | 'number' | 'password' | 'tel' | 'text';
   styleUrls: ['./input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent extends FieldBaseComponent implements AfterContentInit, AfterViewInit {
+export class InputComponent extends InputEventsBase implements AfterContentInit, AfterViewInit {
   private _type: FieldType = 'text';
   private _focus: string | boolean;
   private _mask: MaskType;

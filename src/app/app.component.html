@@ -22,7 +22,8 @@
       <app-input controlName="email" [placeholder]="placeholder" [readonly]="readonly" [maxLength]="maxLength"
         [focus]="focus" [type]="type" [required]="required" [disabled]="disabled" [tooltip]="tooltip"
         [tooltipPosition]="tooltipPosition" [hintLabel]="hintLabel" [errorMessage]="errorMessage" [mask]="mask"
-        [dropSpecialCharacters]="dropSpecialCharacters" [showMaskTyped]="showMaskTyped"></app-input>
+        [dropSpecialCharacters]="dropSpecialCharacters" [showMaskTyped]="showMaskTyped">
+      </app-input>
       <span>Valor: {{formGroup.get('email').value}}</span>
     </form>
 

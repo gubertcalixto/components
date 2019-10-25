@@ -1,11 +1,13 @@
 import { AfterContentInit, ChangeDetectorRef, EventEmitter, Input, OnInit, Optional, Output } from '@angular/core';
 import { AbstractControl, FormArrayName, FormGroup, FormGroupDirective, FormGroupName } from '@angular/forms';
 
+import { ComponentBase } from './component-base';
+
 export function resolveBooleanFromInputs(v: string | boolean): boolean {
   return typeof v === 'string' ? Boolean(v === '' || v) : Boolean(v);
 }
 
-export class FieldBaseComponent implements OnInit, AfterContentInit {
+export abstract class InputBase extends ComponentBase implements OnInit, AfterContentInit {
   public _value: any;
   public _maxLength: number;
 
@@ -17,21 +19,8 @@ export class FieldBaseComponent implements OnInit, AfterContentInit {
   protected groupName: string;
 
   @Input() placeholder: string;
-  @Input() tooltip: string;
-  @Input() tooltipPosition = 'below';
   @Input() controlName: string;
   @Output() valueChange = new EventEmitter();
-
-
-
-  // #region PREFIX SUFFIX
-  // @Input() prefix: string;
-  // @Input() iconPrefix: string;
-  // @Input() isPrefixClickable = true;
-  // @Input() suffix: string;
-  // @Input() iconSuffix: string;
-  // @Input() isSuffixClickable = true;
-  // #endregion PREFIX SUFFIX
 
 
   @Input('value') get value(): any { return this._value; }
@@ -56,7 +45,7 @@ export class FieldBaseComponent implements OnInit, AfterContentInit {
   }
   @Input() get maxLength(): number { return this._maxLength; }
   set maxLength(value: number) {
-    if (value <= 0) {
+    if (value < 0) {
       return;
     }
     this._maxLength = value;
@@ -64,9 +53,11 @@ export class FieldBaseComponent implements OnInit, AfterContentInit {
 
   constructor(
     @Optional() protected pFormGroup: FormGroupDirective, @Optional() protected pArrayName: FormArrayName,
-    @Optional() protected pGroupName: FormGroupName, protected cd: ChangeDetectorRef) { }
+    @Optional() protected pGroupName: FormGroupName, protected cd: ChangeDetectorRef) {
+    super();
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.value && this.controlName) {
       console.error(`Properties \"value\" and \"controlName\" cannot be implemented together <-- check \"${this.controlName}\" input`);
     }
@@ -94,13 +85,11 @@ export class FieldBaseComponent implements OnInit, AfterContentInit {
   }
 
   protected getFieldSelect(): AbstractControl {
-    if (!this.formGroup || !this.controlName) {
-      return;
-    }
-    return this.formGroup.get(
-      (this.arrayName ? this.arrayName + '.' : '') +
-      (this.groupName ? this.groupName + '.' : '') +
-      this.controlName);
+    return (!this.formGroup || !this.controlName) ? undefined :
+      this.formGroup.get(
+        (this.arrayName ? this.arrayName + '.' : '') +
+        (this.groupName ? this.groupName + '.' : '') +
+        this.controlName);
   }
 
   protected modelValueChange(event: any): void {
