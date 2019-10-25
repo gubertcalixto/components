@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,13 +26,16 @@ import { KanbanModule } from './kanban/kanban.module';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    MatButtonModule,
-    KanbanModule,
 
+    MatButtonModule,
+    MatButtonModule,
     MatTooltipModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTabsModule,
     NgxMaskModule.forRoot(),
+
+    KanbanModule,
 
     AppRoutingModule
   ],
