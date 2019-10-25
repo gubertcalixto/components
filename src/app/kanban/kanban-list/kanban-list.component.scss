@@ -1,0 +1,60 @@
+$list-container-gap: 10px;
+$list-background-color: #eef0f2;
+$list-border-radius: 2px;
+$list-border-color: #cacaca;
+$list-header-internal-gap: 6px 8px 0 16px;
+$list-footer-internal-gap: 0 8px 6px 16px;
+vs-kanban-list {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  background-color: $list-background-color;
+  color: #000;
+  border-radius: $list-border-radius;
+
+  > .header {
+    display: flex;
+    flex: initial;
+    padding: $list-header-internal-gap;
+
+    // #region Header List
+    > .list-header {
+      display: flex;
+      flex-flow: row wrap;
+      flex: auto;
+      > .info {
+        display: flex;
+        flex: auto;
+        align-items: center;
+        margin: 0;
+        cursor: context-menu;
+        > vs-icon[model="aux_title"]:first-of-type {
+          padding: 2px;
+        }
+      }
+    }
+    // #endregion Header List
+  }
+
+  > .content {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+  }
+
+  > .loading {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  }
+
+  > .footer {
+    display: flex;
+    flex: initial;
+    padding: $list-footer-internal-gap;
+  }
+}

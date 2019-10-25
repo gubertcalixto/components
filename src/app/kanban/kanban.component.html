@@ -1,0 +1,17 @@
+<div class="board" cdkDropListGroup>
+    <div *ngIf="headerTemplate" class="header">
+        <ng-template [ngTemplateOutlet]="headerTemplate"></ng-template>
+    </div>
+    <div class="list-wrapper">
+        <div *ngFor="let list of lists" class="list-container">
+            <vs-kanban-list [service]="service" [list]="list" [listHeaderTemplate]="listHeaderTemplate"
+                [listFooterTemplate]="listFooterTemplate" [cardHeaderTemplate]="cardHeaderTemplate"
+                [cardBodyTemplate]="cardBodyTemplate" [cardFooterTemplate]="cardFooterTemplate"
+                [cardDragPlaceholderTemplate]="cardDragPlaceholderTemplate" [cardSize]="cardSize" [pageSize]="pageSize">
+            </vs-kanban-list>
+        </div>
+    </div>
+    <div *ngIf="footerTemplate" class="footer">
+        <ng-template [ngTemplateOutlet]="footerTemplate"></ng-template>
+    </div>
+</div>

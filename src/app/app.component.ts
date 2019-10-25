@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { CustomKanbanService } from './custom-kanban.service';
+import { VsKanbanList } from './kanban/tokens/list.token';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  // #region Input
   formGroup: FormGroup;
   teste = 'valor';
 
@@ -25,8 +30,27 @@ export class AppComponent {
   mask: string = undefined;
   dropSpecialCharacters = true;
   showMaskTyped = false;
+  // #endregion Input
 
-  constructor(private formBuilder: FormBuilder) {
+  // #region Kanban
+  service = this.kanbanService;
+  kanbanList = [
+    new VsKanbanList({
+      id: 1,
+      title: 'Teste',
+      icon: 'edit',
+      hasAddAction: true,
+      hasDeleteAction: true
+    }),
+    new VsKanbanList({
+      id: 2,
+      title: 'Teste 2',
+      icon: 'edit'
+    })
+  ] as VsKanbanList[];
+  // #endregion Kanban
+
+  constructor(private formBuilder: FormBuilder, private kanbanService: CustomKanbanService) {
     this.formGroup = this.formBuilder.group({
       email: [undefined, [Validators.required]],
     });

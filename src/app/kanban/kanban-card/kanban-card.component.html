@@ -1,0 +1,14 @@
+<div>
+  <ng-template [ngTemplateOutlet]="cardHeaderTemplate || cardHeaderDefaultTemplate"
+    [ngTemplateOutletContext]="{card: card}"></ng-template>
+</div>
+<div>
+  <ng-template [ngTemplateOutlet]="cardBodyTemplate || cardBodyDefaultTemplate"
+    [ngTemplateOutletContext]="{card: card}"></ng-template>
+</div>
+<div *ngIf="cardFooterTemplate">
+  <ng-template [ngTemplateOutlet]="cardFooterTemplate" [ngTemplateOutletContext]="{card: card}"></ng-template>
+</div>
+
+<ng-template #cardHeaderDefaultTemplate let-card="card">{{card.title}}</ng-template>
+<ng-template #cardBodyDefaultTemplate let-card="card">{{card.description}}</ng-template>

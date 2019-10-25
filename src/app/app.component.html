@@ -12,49 +12,72 @@
     width: 100%;
   }
 </style>
+<mat-tab-group>
+  <mat-tab label="Input">
+    <h3>ngModel</h3>
+    <app-input [(value)]="teste"></app-input>
+    <span>Valor: {{teste}}</span>
+    <form [formGroup]="formGroup">
+      <h3>Reactive Form</h3>
+      <app-input controlName="email" [placeholder]="placeholder" [readonly]="readonly" [maxLength]="maxLength"
+        [focus]="focus" [type]="type" [required]="required" [disabled]="disabled" [tooltip]="tooltip"
+        [tooltipPosition]="tooltipPosition" [hintLabel]="hintLabel" [errorMessage]="errorMessage" [mask]="mask"
+        [dropSpecialCharacters]="dropSpecialCharacters" [showMaskTyped]="showMaskTyped"></app-input>
+      <span>Valor: {{formGroup.get('email').value}}</span>
+    </form>
 
-<h3>ngModel</h3>
-<app-input [(value)]="teste"></app-input>
-<span>Valor: {{teste}}</span>
-<form [formGroup]="formGroup">
-  <h3>Reactive Form</h3>
-  <app-input controlName="email" [placeholder]="placeholder" [readonly]="readonly" [maxLength]="maxLength"
-    [focus]="focus" [type]="type" [required]="required" [disabled]="disabled" [tooltip]="tooltip"
-    [tooltipPosition]="tooltipPosition" [hintLabel]="hintLabel" [errorMessage]="errorMessage" [mask]="mask"
-    [dropSpecialCharacters]="dropSpecialCharacters" [showMaskTyped]="showMaskTyped"></app-input>
-  <span>Valor: {{formGroup.get('email').value}}</span>
-</form>
 
-
-<div class="button-container">
-  <button mat-raised-button color="accent" (click)="placeholderChange()">placeholder: {{placeholder}}</button>
-  <button mat-raised-button color="warn" (click)="readonlyChange()">readonly: {{readonly}}</button>
-  <button mat-raised-button color="primary" (click)="maxLengthChange()">maxLength: {{maxLength}}</button>
-  <button mat-raised-button color="accent" (click)="typeChange()">type: {{type}}</button>
-  <button mat-raised-button color="warn" (click)="requiredChange()">required: {{required}}</button>
-  <button mat-raised-button color="primary" (click)="disabledChange()">disabled: {{disabled}}</button>
-  <button mat-raised-button color="accent" (click)="tooltipChange()">tooltip: {{tooltip}}</button>
-  <button mat-raised-button color="primary" (click)="tooltipPositionChange()">tooltipPosition:
-    {{tooltipPosition}}</button>
-  <button mat-raised-button color="accent" (click)="hintLabelChange()">hintLabel: {{hintLabel}}</button>
-  <button mat-raised-button color="warn" (click)="errorMessageChange()">errorMessage: {{errorMessage}}</button>
-  <button mat-raised-button color="warn" (click)="dropSpecialCharactersChange()">dropSpecialCharacters:
-    {{dropSpecialCharacters}}</button>
-  <button mat-raised-button color="primary" (click)="showMaskTypedChange()">showMaskTyped: {{showMaskTyped}}</button>
-  <button mat-raised-button color="primary" (click)="focusChange()">focus: {{focus}}</button>
-  <div>
-    <button mat-raised-button color="accent" (click)="maskChange()">mask: {{mask}}</button>
-    <span>Erro ao mostrar valor ao trocar de mascara</span>
-  </div>
-  <h4>Falta</h4>
-  <span>
-    @Input() maxInteger: number; <br />
-    @Input() precision = 2; <br />
-    @Input() prefix: string; <br />
-    @Input() iconPrefix: string; <br />
-    @Input() isPrefixClickable = true; <br />
-    @Input() suffix: string; <br />
-    @Input() iconSuffix: string; <br />
-    @Input() isSuffixClickable = true;
-  </span>
-</div>
+    <div class="button-container">
+      <button mat-raised-button color="accent" (click)="placeholderChange()">placeholder: {{placeholder}}</button>
+      <button mat-raised-button color="warn" (click)="readonlyChange()">readonly: {{readonly}}</button>
+      <button mat-raised-button color="primary" (click)="maxLengthChange()">maxLength: {{maxLength}}</button>
+      <button mat-raised-button color="accent" (click)="typeChange()">type: {{type}}</button>
+      <button mat-raised-button color="warn" (click)="requiredChange()">required: {{required}}</button>
+      <button mat-raised-button color="primary" (click)="disabledChange()">disabled: {{disabled}}</button>
+      <button mat-raised-button color="accent" (click)="tooltipChange()">tooltip: {{tooltip}}</button>
+      <button mat-raised-button color="primary" (click)="tooltipPositionChange()">tooltipPosition:
+        {{tooltipPosition}}</button>
+      <button mat-raised-button color="accent" (click)="hintLabelChange()">hintLabel: {{hintLabel}}</button>
+      <button mat-raised-button color="warn" (click)="errorMessageChange()">errorMessage: {{errorMessage}}</button>
+      <button mat-raised-button color="warn" (click)="dropSpecialCharactersChange()">dropSpecialCharacters:
+        {{dropSpecialCharacters}}</button>
+      <button mat-raised-button color="primary" (click)="showMaskTypedChange()">showMaskTyped:
+        {{showMaskTyped}}</button>
+      <button mat-raised-button color="primary" (click)="focusChange()">focus: {{focus}}</button>
+      <div>
+        <button mat-raised-button color="accent" (click)="maskChange()">mask: {{mask}}</button>
+        <span>Erro ao mostrar valor ao trocar de máscara</span>
+      </div>
+      <h4>Falta</h4>
+      <span>
+        @Input() maxInteger: number; <br />
+        @Input() precision = 2; <br />
+        @Input() prefix: string; <br />
+        @Input() iconPrefix: string; <br />
+        @Input() isPrefixClickable = true; <br />
+        @Input() suffix: string; <br />
+        @Input() iconSuffix: string; <br />
+        @Input() isSuffixClickable = true;
+      </span>
+    </div>
+  </mat-tab>
+  <mat-tab label="Kanban">
+    <vs-kanban [lists]="kanbanList" [service]="service" [headerTemplate]="headerTemplate"
+      [cardHeaderTemplate]="cardHeaderTemplate" [cardBodyTemplate]="cardBodyTemplate"
+      [cardFooterTemplate]="cardFooterTemplate" [listHeaderTemplate]="listHeaderTemplate"
+      [listFooterTemplate]="listFooterTemplate" [footerTemplate]="footerTemplate" [cardSize]="52"
+      [cardDragPlaceholderTemplate]="cardDragPlaceholderTemplate" [pageSize]="5">
+    </vs-kanban>
+    <!-- <ng-template #cardDragPlaceholderTemplate let-card="card"> meu card placeholder </ng-template>
+  <ng-template #headerTemplate> meu header </ng-template>
+  <ng-template #footerTemplate> meu footer </ng-template>
+  <ng-template #listHeaderTemplate let-list="list">meu listHeader da lista {{list.title}} </ng-template>
+  <ng-template #listFooterTemplate let-list="list"> meu listFooter da lista {{list.title}} </ng-template>
+  <ng-template #cardHeaderTemplate>meu cardHeader </ng-template>
+  <ng-template #cardBodyTemplate> meu cardBody </ng-template>
+  <ng-template #cardFooterTemplate> meu cardFooter </ng-template> -->
+  </mat-tab>
+  <mat-tab label="Button">
+    TODO
+  </mat-tab>
+</mat-tab-group>
