@@ -20,13 +20,13 @@ export abstract class InputBase extends ComponentBase implements OnInit, AfterCo
 
   @Input() public placeholder: string;
   @Input() public controlName: string;
-  @Output() public changeEvent = new EventEmitter<any>();
+  @Output() public valueChange = new EventEmitter<any>();
 
 
   @Input('value') get value(): any { return this._value; }
   set value(v: any) {
     this._value = v;
-    this.changeEvent.emit(v);
+    this.valueChange.emit(v);
   }
 
   @Input() get required(): boolean | string { return this._required; }
@@ -93,7 +93,7 @@ export abstract class InputBase extends ComponentBase implements OnInit, AfterCo
   }
 
   protected modelValueChange(event: any): void {
-    this.changeEvent.emit(event);
+    this.valueChange.emit(event);
     this.setValueToReactiveFormField(event);
   }
 }
