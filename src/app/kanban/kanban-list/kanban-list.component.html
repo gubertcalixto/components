@@ -1,0 +1,42 @@
+<div class="header">
+  <ng-template [ngTemplateOutlet]="listHeaderTemplate || listHeaderDefaultTemplate"
+    [ngTemplateOutletContext]="{list: list}">
+  </ng-template>
+</div>
+<cdk-virtual-scroll-viewport #viewport *ngIf="dataSource && !isLoading" [itemSize]="cardSize" class="content"
+  [id]="list.id || list.title" cdkDropList [cdkDropListData]="list" (cdkDropListDropped)="dropCard($event)">
+  <!-- 
+    # TODO Added in Angular 8
+    [cdkDragStartDelay]="cardDragDelay"
+  -->
+  <div *cdkVirtualFor="let card of dataSource; trackBy: cardTrackBy" cdkDrag
+    [cdkDragData]="{card: card, viewport: viewport}" class="vs-kanban-placeholder"
+    [ngClass]="{'draggable': !card || card.canMove}" [cdkDragDisabled]="card && !card.canMove">
+    <ng-container *ngIf="cardDragPlaceholderTemplate">
+      <div class="vs-kanban-placeholder" *cdkDragPlaceholder>
+        <ng-template [ngTemplateOutlet]="cardDragPlaceholderTemplate" [ngTemplateOutletContext]="{card: card}">
+        </ng-template>
+      </div>
+    </ng-container>
+    <vs-kanban-card *ngIf="card" [card]="card" [cardHeaderTemplate]="cardHeaderTemplate"
+      [cardBodyTemplate]="cardBodyTemplate" [cardFooterTemplate]="cardFooterTemplate">
+    </vs-kanban-card>
+  </div>
+</cdk-virtual-scroll-viewport>
+<div *ngIf="isLoading" class="loading">
+  Loading
+</div>
+<div *ngIf="listFooterTemplate" class="footer">
+  <ng-template [ngTemplateOutlet]="listFooterTemplate" [ngTemplateOutletContext]="{list: list}">
+  </ng-template>
+</div>
+
+<ng-template #listHeaderDefaultTemplate let-list="list">
+  <div class="list-header">
+    <h3 class="info">
+      {{list.title}}
+    </h3>
+    <div *ngIf="list.hasAddAction || list.hasDeleteAction">
+    </div>
+  </div>
+</ng-template>

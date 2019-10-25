@@ -13,6 +13,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InputComponent } from './input/input.component';
+import { KanbanModule } from './kanban/kanban.module';
 
 @NgModule({
   declarations: [
@@ -27,11 +28,14 @@ import { InputComponent } from './input/input.component';
     FormsModule,
 
     MatButtonModule,
+    MatButtonModule,
     MatTooltipModule,
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
     NgxMaskModule.forRoot(),
+
+    KanbanModule,
 
     AppRoutingModule
   ],

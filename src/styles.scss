@@ -3,3 +3,18 @@
 // #region Components
 @import "./app/fields.theme.scss";
 // #enregion Components
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+app-root > mat-tab-group {
+  flex: 1;
+  height: 100%;
+  > .mat-tab-body-wrapper {
+    flex: 1;
+    padding: 2px 8px;
+  }
+}
