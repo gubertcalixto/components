@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { VsKanbanService } from './kanban/kanban.service';
-import { VsKanbanCard } from './kanban/tokens/card.token';
-import { VsKanbanList } from './kanban/tokens/list.token';
+import { VsKanbanService } from '../../kanban/kanban.service';
+import { VsKanbanCard } from '../../kanban/tokens/card.token';
+import { VsKanbanList } from '../../kanban/tokens/list.token';
 
 @Injectable({
   providedIn: 'root'

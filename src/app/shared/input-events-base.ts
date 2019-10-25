@@ -10,7 +10,7 @@ export abstract class InputEventsBase extends InputBase {
 
     protected setValueToReactiveFormField(value: any = this.value): void {
         const field = this.getFieldSelect();
-        if (field && value) {
+        if (field) {
             field.setValue(value);
         }
     }

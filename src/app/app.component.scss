@@ -1,0 +1,19 @@
+app-root {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+  > app-examples {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    > mat-tab-group {
+      flex: 1;
+      height: 100%;
+      > .mat-tab-body-wrapper {
+        flex: 1;
+        padding: 2px 8px;
+      }
+    }
+  }
+}
