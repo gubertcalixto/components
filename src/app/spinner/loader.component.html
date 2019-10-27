@@ -1,0 +1,7 @@
+<mat-progress-spinner *ngIf="type === 'spinner';else progress_bar" [color]="color" [diameter]="diameter" [mode]="mode"
+    [value]="value" [strokeWidth]="weight" [matTooltip]="tooltip" [matTooltipPosition]="tooltipPosition">
+</mat-progress-spinner>
+<ng-template #progress_bar>
+    <mat-progress-bar [color]="color" [mode]="mode" [value]="value" [matTooltip]="tooltip"
+        [matTooltipPosition]="tooltipPosition"></mat-progress-bar>
+</ng-template>

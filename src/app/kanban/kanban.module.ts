@@ -14,9 +14,6 @@ import { KanbanComponent } from './kanban.component';
 
     DragDropModule,
     ScrollingModule,
-
-    // VsButtonModule,
-    // VsIconModule
   ],
   exports: [KanbanComponent]
 })

@@ -1,0 +1,41 @@
+<h2>Loader Spinner</h2>
+<div class="spinner">
+    <app-loader mode="indeterminate" [diameter]="25"></app-loader>
+    <app-loader diameter="50"></app-loader>
+    <app-loader diameter="75"></app-loader>
+</div>
+
+<div class="spinner">
+    <app-loader [mode]="'determinate'" [value]="25" diameter="25"></app-loader>
+    <app-loader mode="determinate" value="50" diameter="50"></app-loader>
+    <app-loader mode="determinate" value="75" diameter="75"></app-loader>
+</div>
+
+<div class="spinner">
+    <app-loader [weight]="5" tooltip="Thin"></app-loader>
+    <app-loader weight="10"></app-loader>
+    <app-loader weight="20" tooltip="Thick" tooltipPosition="above"></app-loader>
+</div>
+
+<div class="spinner">
+    <app-loader [color]="'primary'"></app-loader>
+    <app-loader color="accent"></app-loader>
+    <app-loader color="warn"></app-loader>
+</div>
+
+<h2>Loader Bar</h2>
+<div class="bar">
+    <app-loader type="bar" [mode]="'indeterminate'"></app-loader>
+</div>
+
+<div class="bar">
+    <app-loader type="bar" mode="determinate" [value]="25"></app-loader>
+    <app-loader type="bar" mode="determinate" value="50"></app-loader>
+    <app-loader type="bar" mode="determinate" value="75"></app-loader>
+</div>
+
+<div class="bar">
+    <app-loader type="bar" [color]="'primary'"></app-loader>
+    <app-loader type="bar" color="accent"></app-loader>
+    <app-loader type="bar" color="warn"></app-loader>
+</div>
