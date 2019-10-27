@@ -1,0 +1,16 @@
+.spinner {
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+  > * {
+    margin: 0 12px;
+  }
+}
+.bar {
+  display: flex;
+  flex-direction: column;
+  > * {
+    width: 100%;
+    margin: 12px;
+  }
+}
