@@ -20,8 +20,8 @@ import { InputComponent } from './input.component';
     NgxMaskModule.forChild(),
   ],
   exports: [
-    InputComponent
-    // TODO evaluate if should export ReactiveFormsModule / FormsModule
+    InputComponent,
+    FormsModule
   ]
 })
 export class InputModule { }
