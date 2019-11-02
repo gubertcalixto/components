@@ -1,14 +1,7 @@
-<mat-tab-group>
-  <mat-tab label="Button">
-    <app-example-button></app-example-button>
-  </mat-tab>
-  <mat-tab label="Loader">
-    <app-example-loader></app-example-loader>
-  </mat-tab>
-  <mat-tab label="Input">
-    <app-example-input></app-example-input>
-  </mat-tab>
-  <mat-tab label="Kanban">
-    <app-example-kanban></app-example-kanban>
-  </mat-tab>
-</mat-tab-group>
+<nav mat-tab-nav-bar>
+  <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive">
+    {{link.label}}
+  </a>
+</nav>
+<router-outlet></router-outlet>
