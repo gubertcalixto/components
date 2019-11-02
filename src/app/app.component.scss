@@ -5,8 +5,9 @@ app-root {
   height: 100%;
   > app-examples {
     display: flex;
-    flex: 1;
+    flex: 100%;
     flex-direction: column;
+    max-height: 100%;
     > mat-tab-group {
       flex: 1;
       height: 100%;
