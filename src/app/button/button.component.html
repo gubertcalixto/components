@@ -1,0 +1,7 @@
+<!-- (click)="!disabled && onClick()" -->
+<button mat-button [class.mat-button]="internalModel === 'mat-button-base'" [ngClass]=[internalModel] [color]="color"
+    [matTooltip]="tooltip" [matTooltipPosition]="tooltipPosition" [tabIndex]="tabIndex" [disabled]="disabled">
+    <mat-icon *ngIf="!label && internalIcon">{{internalIcon}}</mat-icon>
+    <span *ngIf="!internalIcon && label">{{label}}</span>
+    <ng-content *ngIf="!label && !internalIcon"></ng-content>
+</button>

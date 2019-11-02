@@ -1,0 +1,23 @@
+$button-padding-between: 8px;
+
+app-button {
+  display: inline-flex;
+  button {
+    width: 100%;
+  }
+}
+.app-button-row {
+  app-button + app-button {
+    padding-left: $button-padding-between;
+  }
+}
+.app-button-column {
+  display: flex;
+  flex-direction: column;
+  app-button {
+    display: flex;
+    & + & {
+      padding-top: $button-padding-between;
+    }
+  }
+}
