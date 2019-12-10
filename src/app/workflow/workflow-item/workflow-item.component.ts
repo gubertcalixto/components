@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, TemplateRef } from '@angular/co
 @Component({
   selector: 'app-workflow-item',
   templateUrl: './workflow-item.component.html',
-  styleUrls: ['./workflow-item.component.scss']
+  styleUrls: ['./workflow-item.component.scss', 'workflow-item-placeholder.scss']
 })
 export class WorkflowItemComponent implements OnInit {
   @Input() item: WorkflowItem;

@@ -1,0 +1,28 @@
+$placeholder-icon-opacity: .3;
+$placeholder-info-opacity: 0;
+$placeholder-opacity-time: .25s;
+
+.container.placeholder {
+  .workflow-icon-container {
+    opacity: $placeholder-icon-opacity;
+    transition: opacity $placeholder-opacity-time;
+    .workflow-icon {
+      cursor: pointer;
+    }
+  }
+  .info {
+    opacity: $placeholder-info-opacity;
+    transition: opacity $placeholder-opacity-time;
+  }
+}
+.container.placeholder:hover {
+  .workflow-icon-container {
+    opacity: 1;
+    .workflow-icon {
+      cursor: pointer;
+    }
+  }
+  .info {
+    opacity: 1;
+  }
+}
