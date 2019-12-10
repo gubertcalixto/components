@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { AppComponent } from './app.component';
+import { WorkflowModule } from './workflow/workflow.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +14,8 @@ import { AppComponent } from './app.component';
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+
+    WorkflowModule,
 
     NgxMaskModule.forRoot(),
 
