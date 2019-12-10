@@ -14,6 +14,12 @@ $line-color: #e5e5e5;
 $info-padding-left: 16px;
 $info-body-max-height: 120px;
 
+@mixin no-user-select {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -39,6 +45,8 @@ $info-body-max-height: 120px;
       border: $icon-border;
       border-radius: 50%;
       z-index: 2;
+      cursor: context-menu;
+      @include no-user-select();
     }
     &:before {
       $line-remove-icon-size: #{$icon-size + ($container-padding * 2)};
@@ -77,6 +85,14 @@ $info-body-max-height: 120px;
     .footer {
       display: flex;
       flex: initial;
+    }
+  }
+
+  &.placeholder {
+    .workflow-icon-container {
+      .workflow-icon {
+        cursor: pointer;
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WorkFlowItem } from './workflow-item/workflow-item.component';
+import { WorkflowItem } from './workflow-item/workflow-item.component';
 
 @Component({
   selector: 'app-workflow',
@@ -8,7 +8,7 @@ import { WorkFlowItem } from './workflow-item/workflow-item.component';
   styleUrls: ['./workflow.component.scss']
 })
 export class WorkflowComponent implements OnInit {
-  items: WorkFlowItem[] = [
+  items: WorkflowItem[] = [
     {
       icon: 1,
       header: 'Header',
@@ -22,6 +22,11 @@ export class WorkflowComponent implements OnInit {
       footer: 'footer 2',
     }
   ];
+  itemPlaceholder: WorkflowItem = {
+    icon: '+',
+    iconBackgroundColor: 'red',
+    header: 'Placeholder'
+  }
 
   constructor() { }
 

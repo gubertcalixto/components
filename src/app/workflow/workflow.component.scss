@@ -1,5 +1,6 @@
 $workflow-padding: 4px;
 $items-padding: 16px;
+$last-item-padding: 8px;
 
 :host ::ng-deep {
   padding: $workflow-padding;
@@ -11,14 +12,19 @@ $items-padding: 16px;
   $end-line-width: 50%;
   $end-line-height: 4px;
   $end-line-color: #e5e5e5;
-  app-workflow-item:last-of-type .container > .workflow-icon-container:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: calc((100% - #{$end-line-width}) / 2);
-    right: calc((100% - #{$end-line-width}) / 2);
-    height: $end-line-height;
-    background-color: $end-line-color;
-    border-radius: $end-line-height;
+  app-workflow-item:last-of-type .container {
+    .info {
+      padding-bottom: $last-item-padding;
+    }
+    .workflow-icon-container:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: calc((100% - #{$end-line-width}) / 2);
+      right: calc((100% - #{$end-line-width}) / 2);
+      height: $end-line-height;
+      background-color: $end-line-color;
+      border-radius: $end-line-height;
+    }
   }
 }

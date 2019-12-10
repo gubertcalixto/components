@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatRippleModule } from '@angular/material/core';
 
 import { WorkflowItemComponent } from './workflow-item/workflow-item.component';
-import { WorkflowPlaceholderComponent } from './workflow-placeholder/workflow-placeholder.component';
 import { WorkflowComponent } from './workflow.component';
 
 @NgModule({
-  declarations: [WorkflowComponent, WorkflowItemComponent, WorkflowPlaceholderComponent],
+  declarations: [WorkflowComponent, WorkflowItemComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    MatRippleModule
   ],
   exports: [
     WorkflowComponent
