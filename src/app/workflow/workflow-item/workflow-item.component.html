@@ -2,16 +2,15 @@
   <div class="workflow-icon-container">
     <button class="workflow-icon" matRipple [matRippleDisabled]="!item.isPlaceholder"
       [style.background-color]="item.iconBackgroundColor" (click)="item.iconCallback && item.iconCallback(item)"
-      [ngClass]="{'clickable' : item?.iconCallback}">
-      {{item?.icon}}
+      [ngClass]="{'clickable' : item.iconCallback && item.hasIconAnimation}">
+      {{item.icon}}
     </button>
   </div>
   <div class="info">
     <div class="header">
-      <h3 class="text" [ngClass]="{'clickable' : item?.titleCallback}"
-        (click)="item.titleCallback && item.titleCallback(item)">{{item?.title}}</h3>
+      <h3 class="text" (click)="item.titleCallback && item.titleCallback(item)">{{item.title}}</h3>
     </div>
-    <div class="body">{{item?.body}}</div>
-    <div class="footer">{{item?.footer}}</div>
+    <div class="body">{{item.body}}</div>
+    <div class="footer">{{item.footer}}</div>
   </div>
 </div>

@@ -7,9 +7,10 @@ export class WorkflowItem {
   public body?: string;
   public footer?: string;
   public isPlaceholder?: boolean;
-  public isActive?= true;
+  public isActive?= false;
+  public hasIconAnimation?= false;
 
-  constructor(data: WorkflowItem) {
+  constructor(data?: WorkflowItem) {
     if (data) {
       this.icon = data.icon;
       this.iconBackgroundColor = data.iconBackgroundColor;
@@ -17,7 +18,8 @@ export class WorkflowItem {
       this.body = data.body;
       this.footer = data.footer;
       this.isPlaceholder = data.isPlaceholder;
-      this.isActive = typeof data.isActive === 'boolean' ? data.isActive : true;
+      this.isActive = data.isActive;
+      this.hasIconAnimation = data.hasIconAnimation;
     }
   }
 }

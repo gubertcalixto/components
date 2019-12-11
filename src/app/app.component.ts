@@ -25,6 +25,7 @@ export class AppComponent {
       iconBackgroundColor: '#59afe1',
       title: 'Placeholder',
       isPlaceholder: true,
+      hasIconAnimation: true,
       iconCallback: (item) => this.placeholderClick(item),
       titleCallback: (item) => this.placeholderClick(item)
     },
