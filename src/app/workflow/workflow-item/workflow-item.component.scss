@@ -28,13 +28,13 @@ $container-padding: 4px;
   $line-weight: 4px;
   $line-color: #e5e5e5;
 
-  .workflow-icon-container {
+  .icon-container {
     display: flex;
     flex-direction: column;
     min-width: min-content;
     position: relative;
     max-width: $icon-container-width;
-    .workflow-icon {
+    .icon {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -50,6 +50,7 @@ $container-padding: 4px;
       font-weight: 400;
       background-color: $icon-default-background;
       border: $icon-border;
+      color: #000000;
       border-radius: 50%;
       z-index: 2;
       cursor: pointer;
@@ -111,7 +112,7 @@ $container-padding: 4px;
 @mixin container-active-style() {
   $icon-active-border: 2px solid #cacaca;
 
-  .workflow-icon-container .workflow-icon {
+  .icon-container .icon {
     border: $icon-active-border;
     font-weight: 600;
   }
@@ -121,7 +122,7 @@ $container-padding: 4px;
 }
 
 @mixin container-not-active-style() {
-  .workflow-icon-container .workflow-icon.clickable:hover {
+  .icon-container .icon.clickable:hover {
     animation: icon-pulse-animation 1s;
   }
 }

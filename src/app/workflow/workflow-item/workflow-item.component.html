@@ -1,8 +1,8 @@
 <div *ngIf="item" class="container" [ngClass]="{'placeholder': item.isPlaceholder, active: item.isActive}">
-  <div class="workflow-icon-container">
-    <button class="workflow-icon" matRipple [matRippleDisabled]="!item.isPlaceholder"
+  <div class="icon-container">
+    <button class="icon" matRipple [matRippleDisabled]="!item.isPlaceholder"
       [style.background-color]="item.iconBackgroundColor" (click)="item.iconCallback && item.iconCallback(item)"
-      [ngClass]="{'clickable' : item.iconCallback && item.hasIconAnimation}">
+      [ngClass]="{'clickable' : item.iconCallback && item.hasIconAnimation}" [disabled]="!item.iconCallback">
       {{item.icon}}
     </button>
   </div>

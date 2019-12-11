@@ -14,7 +14,7 @@ $placeholder-padding-bottom: 24px;
 }
 
 .container.placeholder {
-  .workflow-icon-container .workflow-icon {
+  .icon-container .icon {
     @include placeholder-opacity();
     cursor: pointer;
   }
@@ -24,8 +24,11 @@ $placeholder-padding-bottom: 24px;
   }
 }
 .container.placeholder:hover {
-  .workflow-icon-container .workflow-icon,
+  .icon-container .icon.clickable,
   .info {
     @include placeholder-opacity(true);
   }
+}
+.container.placeholder .icon-container .icon.clickable:focus {
+  @include placeholder-opacity(true);
 }

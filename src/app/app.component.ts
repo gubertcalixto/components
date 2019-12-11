@@ -23,11 +23,29 @@ export class AppComponent {
     {
       icon: '+',
       iconBackgroundColor: '#59afe1',
-      title: 'Placeholder',
+      title: 'Placeholder Azul',
+      isPlaceholder: true,
+      hasIconAnimation: true,
+      iconCallback: (item) => this.placeholderClick(item, '#59afe1'),
+      titleCallback: (item) => this.placeholderClick(item, '#59afe1')
+    },
+    {
+      icon: '+',
+      iconBackgroundColor: '#67ab49',
+      title: 'Placeholder Verde',
       isPlaceholder: true,
       hasIconAnimation: true,
       iconCallback: (item) => this.placeholderClick(item),
       titleCallback: (item) => this.placeholderClick(item)
+    },
+    {
+      icon: '+',
+      iconBackgroundColor: '#f79232',
+      title: 'Placeholder Laranja',
+      isPlaceholder: true,
+      hasIconAnimation: true,
+      iconCallback: (item) => this.placeholderClick(item, '#f79232'),
+      titleCallback: (item) => this.placeholderClick(item, '#f79232')
     },
     {
       icon: 2,
@@ -52,22 +70,19 @@ export class AppComponent {
     this.items.filter(i => i.isActive).forEach(i => i.isActive = false);
   }
 
-  public placeholderClick(item: WorkflowItem): void {
-    const index = this.items.findIndex(i => i === item);
-    if (index !== -1) {
-      const newItem: WorkflowItem = {
-        icon: this.items.length,
-        title: `Header ${this.items.length}`,
-        body: `body ${this.items.length}`,
-        iconBackgroundColor: '#67ab49',
-        isActive: true,
-        iconCallback: (i) => this.itemClicked(i),
-        titleCallback: (i) => this.itemClicked(i)
-      };
-      this.selectedItem = newItem;
-      this.clearAllActiveItemsFromWorkflow();
-      this.items.splice(index, 0, newItem);
-    }
+  public placeholderClick(item: WorkflowItem, color: string = '#67ab49'): void {
+    const newItem: WorkflowItem = {
+      icon: this.items.length,
+      title: `Header ${this.items.length}`,
+      body: `body ${this.items.length}`,
+      iconBackgroundColor: color,
+      isActive: true,
+      iconCallback: (i) => this.itemClicked(i),
+      titleCallback: (i) => this.itemClicked(i)
+    };
+    this.selectedItem = newItem;
+    this.clearAllActiveItemsFromWorkflow();
+    this.items.push(newItem);
   }
 
   public itemClicked(item: WorkflowItem) {
