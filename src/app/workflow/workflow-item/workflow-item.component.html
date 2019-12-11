@@ -12,5 +12,6 @@
     </div>
     <div class="body">{{item.body}}</div>
     <div class="footer">{{item.footer}}</div>
+    <app-workflow *ngIf="item.children && item.children.length > 0" [items]="item.children"></app-workflow>
   </div>
 </div>

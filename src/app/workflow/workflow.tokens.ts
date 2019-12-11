@@ -6,6 +6,7 @@ export class WorkflowItem {
   public titleCallback?: (item?: WorkflowItem) => void;
   public body?: string;
   public footer?: string;
+  public children?: WorkflowItem[] = [];
   public isPlaceholder?: boolean;
   public isActive?= false;
   public hasIconAnimation?= false;
@@ -17,6 +18,7 @@ export class WorkflowItem {
       this.title = data.title;
       this.body = data.body;
       this.footer = data.footer;
+      this.children = data.children || [];
       this.isPlaceholder = data.isPlaceholder;
       this.isActive = data.isActive;
       this.hasIconAnimation = data.hasIconAnimation;

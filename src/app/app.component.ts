@@ -25,7 +25,7 @@ export class AppComponent {
       iconBackgroundColor: '#59afe1',
       title: 'Placeholder Azul',
       isPlaceholder: true,
-      hasIconAnimation: true,
+      hasIconAnimation: false,
       iconCallback: (item) => this.placeholderClick(item, '#59afe1'),
       titleCallback: (item) => this.placeholderClick(item, '#59afe1')
     },
@@ -54,11 +54,43 @@ export class AppComponent {
       iconBackgroundColor: '#f79232',
       footer: 'footer 2',
       iconCallback: (item) => this.itemClicked(item),
-      titleCallback: (item) => this.itemClicked(item)
+      titleCallback: (item) => this.itemClicked(item),
+      children: [
+        {
+          icon: '2.1',
+          title: 'Header 2.1',
+          body: 'body 2.1',
+          iconBackgroundColor: '#59afe1',
+          children: [
+            {
+              icon: 'x',
+              title: 'Header 2.1.1',
+              body: 'body 2.1.1',
+              iconBackgroundColor: '#67ab49',
+              iconCallback: (item) => this.itemClicked(item),
+              titleCallback: (item) => this.itemClicked(item),
+            }
+          ]
+        },
+        {
+          icon: '2.2',
+          title: 'Header 2.2',
+          body: 'body 2.2',
+          iconBackgroundColor: '#f79232',
+          children: [
+            {
+              icon: 'x',
+              title: 'Header 2.1.2',
+              body: 'body 2.1.2',
+              iconBackgroundColor: 'gainsboro'
+            }
+          ]
+        }
+      ]
     }
   ];
   public endItem: WorkflowItem = {
-    icon: 'X',
+    icon: 'G',
     title: 'FIM',
     hasIconAnimation: true,
     iconCallback: (item) => this.finalComponentClick(item),

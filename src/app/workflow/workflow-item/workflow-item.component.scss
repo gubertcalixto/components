@@ -22,10 +22,10 @@ $container-padding: 4px;
 
 @mixin icon-style() {
   $icon-container-width: 15%;
-  $icon-size: 36px;
+  $icon-size: 32px;
   $icon-default-background: #ffffff;
   $icon-border: 1px solid #e5e5e5;
-  $line-weight: 4px;
+  $line-weight: 2px;
   $line-color: #e5e5e5;
 
   .icon-container {
@@ -112,11 +112,11 @@ $container-padding: 4px;
 @mixin container-active-style() {
   $icon-active-border: 2px solid #cacaca;
 
-  .icon-container .icon {
+  > .icon-container > .icon {
     border: $icon-active-border;
     font-weight: 600;
   }
-  .info .header .text {
+  > .info > .header > .text {
     font-weight: 600;
   }
 }

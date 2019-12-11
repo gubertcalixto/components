@@ -4,7 +4,7 @@ $last-item-padding: 8px;
 
 @mixin end-line() {
   $end-line-width: 50%;
-  $end-line-height: 4px;
+  $end-line-height: 2px;
   $end-line-color: #e5e5e5;
   app-workflow-item:last-of-type .container {
     .info {
@@ -32,6 +32,10 @@ $last-item-padding: 8px;
   // Padding between items
   app-workflow-item:not(:last-of-type) .container > .info {
     padding-bottom: $items-padding;
+  }
+  // TODO: Fix !important
+  app-workflow {
+    padding-top: 16px !important;
   }
 }
 :host.has-final {
