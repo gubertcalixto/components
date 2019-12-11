@@ -18,3 +18,20 @@ app-root {
     }
   }
 }
+
+app-root {
+  & > div {
+    display: flex;
+    flex: auto;
+    > app-workflow {
+      display: flex;
+      flex: 2;
+      flex-direction: column;
+    }
+    > div {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+  }
+}

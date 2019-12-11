@@ -2,13 +2,7 @@ $workflow-padding: 4px;
 $items-padding: 16px;
 $last-item-padding: 8px;
 
-:host ::ng-deep {
-  padding: $workflow-padding;
-  // Padding between items
-  app-workflow-item:not(:last-of-type) .container > .info {
-    padding-bottom: $items-padding;
-  }
-  // End Line
+@mixin end-line() {
   $end-line-width: 50%;
   $end-line-height: 4px;
   $end-line-color: #e5e5e5;
@@ -26,5 +20,21 @@ $last-item-padding: 8px;
       background-color: $end-line-color;
       border-radius: $end-line-height;
     }
+  }
+}
+
+:host ::ng-deep {
+  padding: $workflow-padding;
+  app-workflow-item {
+    display: flex;
+  }
+  // Padding between items
+  app-workflow-item:not(:last-of-type) .container > .info {
+    padding-bottom: $items-padding;
+  }
+}
+:host.has-final {
+  & ::ng-deep {
+    @include end-line();
   }
 }

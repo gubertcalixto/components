@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { WorkflowItem } from '../workflow.tokens';
+
 
 @Component({
   selector: 'app-workflow-item',
@@ -7,8 +10,6 @@ import { Component, EventEmitter, Input, OnInit, TemplateRef } from '@angular/co
 })
 export class WorkflowItemComponent implements OnInit {
   @Input() item: WorkflowItem;
-  @Input() isPlaceholder = false;
-  @Input() iconClicked = new EventEmitter<void>();
 
   constructor() { }
 
@@ -17,10 +18,4 @@ export class WorkflowItemComponent implements OnInit {
 
 }
 
-export interface WorkflowItem {
-  icon?: string | number | TemplateRef<any>;
-  iconBackgroundColor?: string;
-  header?: string | TemplateRef<any>;
-  body?: string | TemplateRef<any>;
-  footer?: string | TemplateRef<any>;
-}
+

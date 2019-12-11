@@ -11,8 +11,6 @@ import { WorkflowComponent } from './workflow.component';
     CommonModule,
     MatRippleModule
   ],
-  exports: [
-    WorkflowComponent
-  ]
+  exports: [WorkflowComponent]
 })
 export class WorkflowModule { }

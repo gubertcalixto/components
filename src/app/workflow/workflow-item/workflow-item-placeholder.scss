@@ -1,6 +1,7 @@
-$placeholder-icon-opacity: .3;
+$placeholder-icon-opacity: 0.3;
 $placeholder-info-opacity: 0;
-$placeholder-opacity-time: .25s;
+$placeholder-hover-opacity: 0.9;
+$placeholder-opacity-time: 0.25s;
 
 .container.placeholder {
   .workflow-icon-container {
@@ -17,12 +18,12 @@ $placeholder-opacity-time: .25s;
 }
 .container.placeholder:hover {
   .workflow-icon-container {
-    opacity: 1;
+    opacity: $placeholder-hover-opacity;
     .workflow-icon {
       cursor: pointer;
     }
   }
   .info {
-    opacity: 1;
+    opacity: $placeholder-hover-opacity;
   }
 }

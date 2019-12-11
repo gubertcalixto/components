@@ -1,2 +1,10 @@
-<app-workflow></app-workflow>
+<div>
+  <app-workflow [(items)]="items" [endItem]="endItem"></app-workflow>
+  <div *ngIf="selectedItem">
+    <!-- <h1 (click)="endItem = undefined">Matar End Item</h1> -->
+    <h1>Item Selecionado</h1>
+    {{selectedItem.title}}
+  </div>
+</div>
+
 <!-- <router-outlet></router-outlet> -->

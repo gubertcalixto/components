@@ -1,2 +1,4 @@
-<app-workflow-item [item]="item" *ngFor="let item of items"></app-workflow-item>
-<app-workflow-item [isPlaceholder]="true" [item]="itemPlaceholder"></app-workflow-item>
+<app-workflow-item *ngFor="let item of items" [item]="item">
+</app-workflow-item>
+<app-workflow-item *ngIf="endItem" [item]="endItem">
+</app-workflow-item>
