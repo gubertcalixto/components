@@ -122,8 +122,11 @@ $container-padding: 4px;
 }
 
 @mixin container-not-active-style() {
-  .icon-container .icon.clickable:hover {
-    animation: icon-pulse-animation 1s;
+  .icon-container .icon.clickable {
+    &:hover,
+    &:focus {
+      animation: icon-pulse-animation 1s;
+    }
   }
 }
 
