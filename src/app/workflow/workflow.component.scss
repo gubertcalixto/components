@@ -24,6 +24,7 @@ $last-item-padding: 8px;
 }
 
 :host ::ng-deep {
+  overflow: auto;
   padding: $workflow-padding;
   app-workflow-item {
     display: flex;

@@ -1,29 +1,31 @@
 $placeholder-icon-opacity: 0.3;
 $placeholder-info-opacity: 0;
 $placeholder-hover-opacity: 0.9;
-$placeholder-opacity-time: 0.25s;
+$placeholder-opacity-time: 250ms;
+$placeholder-padding-bottom: 24px;
 
-.container.placeholder {
-  .workflow-icon-container {
+@mixin placeholder-opacity($is-hovered: false) {
+  @if $is-hovered {
+    opacity: $placeholder-hover-opacity;
+  } @else {
     opacity: $placeholder-icon-opacity;
-    transition: opacity $placeholder-opacity-time;
-    .workflow-icon {
-      cursor: pointer;
-    }
-  }
-  .info {
-    opacity: $placeholder-info-opacity;
     transition: opacity $placeholder-opacity-time;
   }
 }
-.container.placeholder:hover {
-  .workflow-icon-container {
-    opacity: $placeholder-hover-opacity;
-    .workflow-icon {
-      cursor: pointer;
-    }
+
+.container.placeholder {
+  .workflow-icon-container .workflow-icon {
+    @include placeholder-opacity();
+    cursor: pointer;
   }
   .info {
-    opacity: $placeholder-hover-opacity;
+    @include placeholder-opacity();
+    padding-bottom: $placeholder-padding-bottom;
+  }
+}
+.container.placeholder:hover {
+  .workflow-icon-container .workflow-icon,
+  .info {
+    @include placeholder-opacity(true);
   }
 }

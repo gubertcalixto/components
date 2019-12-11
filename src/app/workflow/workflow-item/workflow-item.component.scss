@@ -17,6 +17,21 @@ $info-body-max-height: 120px;
   -webkit-user-select: none;
   -ms-user-select: none;
 }
+
+@keyframes icon-pulse-animation {
+  $start-color: rgba(44, 44, 44, 0.7);
+  $end-color: rgba(0, 0, 0, 0);
+  0% {
+    box-shadow: 0 0 0 0 $start-color;
+  }
+  70% {
+    box-shadow: 0 0 0 5px $end-color;
+  }
+  100% {
+    box-shadow: 0 0 0 0 $end-color;
+  }
+}
+
 :host ::ng-deep {
   .container {
     display: flex;
@@ -97,16 +112,19 @@ $info-body-max-height: 120px;
     }
 
     &.active {
-      .workflow-icon-container {
-        .workflow-icon {
-          border: $icon-active-border;
-          font-weight: 600;
-        }
+      .workflow-icon-container .workflow-icon {
+        border: $icon-active-border;
+        font-weight: 600;
       }
       .info {
         .header .text {
           font-weight: 600;
         }
+      }
+    }
+    &:not(.active) {
+      .workflow-icon-container .workflow-icon.clickable:hover {
+        animation: icon-pulse-animation 1s;
       }
     }
   }
