@@ -42,6 +42,7 @@ export class AppComponent {
   public endItem: WorkflowItem = {
     icon: 'X',
     title: 'FIM',
+    hasIconAnimation: true,
     iconCallback: (item) => this.finalComponentClick(item),
     titleCallback: (item) => this.finalComponentClick(item)
   };

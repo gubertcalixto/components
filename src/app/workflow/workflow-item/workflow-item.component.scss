@@ -1,22 +1,4 @@
 $container-padding: 4px;
-$icon-container-width: 15%;
-
-$icon-size: 36px;
-$icon-default-background: #ffffff;
-$icon-border: 1px solid #e5e5e5;
-$icon-active-border: 2px solid #cacaca;
-
-$line-weight: 4px;
-$line-color: #e5e5e5;
-
-$info-padding-left: 16px;
-$info-body-max-height: 120px;
-
-@mixin no-user-select {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
 
 @keyframes icon-pulse-animation {
   $start-color: rgba(44, 44, 44, 0.7);
@@ -32,100 +14,131 @@ $info-body-max-height: 120px;
   }
 }
 
+@mixin no-user-select {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+@mixin icon-style() {
+  $icon-container-width: 15%;
+  $icon-size: 36px;
+  $icon-default-background: #ffffff;
+  $icon-border: 1px solid #e5e5e5;
+  $line-weight: 4px;
+  $line-color: #e5e5e5;
+
+  .workflow-icon-container {
+    display: flex;
+    flex-direction: column;
+    min-width: min-content;
+    position: relative;
+    max-width: $icon-container-width;
+    .workflow-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: $container-padding;
+      margin: 0;
+      min-width: $icon-size;
+      width: $icon-size;
+      max-width: $icon-size;
+      min-height: $icon-size;
+      height: $icon-size;
+      max-height: $icon-size;
+      font-size: #{$icon-size / 2};
+      font-weight: 400;
+      background-color: $icon-default-background;
+      border: $icon-border;
+      border-radius: 50%;
+      z-index: 2;
+      cursor: pointer;
+      outline: none;
+      @include no-user-select();
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      width: $line-weight;
+      background-color: $line-color;
+      top: $icon-size;
+      bottom: 0;
+      left: calc(50% - #{$line-weight / 2});
+    }
+  }
+}
+
+@mixin info-style() {
+  $info-padding-left: 16px;
+  $info-body-max-height: 120px;
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+    padding-top: $container-padding;
+    padding-left: $info-padding-left;
+    overflow: auto;
+    .body {
+      display: flex;
+      flex: initial;
+      max-height: $info-body-max-height;
+      overflow-y: auto;
+      margin: $container-padding 0;
+      &:empty {
+        margin: 0;
+      }
+    }
+    // Ellipsis for long headers
+    .header .text {
+      display: block;
+      white-space: nowrap;
+      margin: 0;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      overflow: hidden;
+      cursor: pointer;
+      font-weight: 400;
+    }
+    .header,
+    .footer {
+      display: flex;
+      flex: initial;
+    }
+  }
+}
+
+@mixin container-active-style() {
+  $icon-active-border: 2px solid #cacaca;
+
+  .workflow-icon-container .workflow-icon {
+    border: $icon-active-border;
+    font-weight: 600;
+  }
+  .info .header .text {
+    font-weight: 600;
+  }
+}
+
+@mixin container-not-active-style() {
+  .workflow-icon-container .workflow-icon.clickable:hover {
+    animation: icon-pulse-animation 1s;
+  }
+}
+
 :host ::ng-deep {
   .container {
     display: flex;
     flex: auto;
     flex-direction: row;
     padding: 0 $container-padding;
-    .workflow-icon-container {
-      display: flex;
-      flex-direction: column;
-      min-width: min-content;
-      position: relative;
-      max-width: $icon-container-width;
-      .workflow-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: $container-padding;
-        margin: 0;
-        min-width: $icon-size;
-        width: $icon-size;
-        max-width: $icon-size;
-        min-height: $icon-size;
-        height: $icon-size;
-        max-height: $icon-size;
-        font-size: #{$icon-size / 2};
-        font-weight: 400;
-        background-color: $icon-default-background;
-        border: $icon-border;
-        border-radius: 50%;
-        z-index: 2;
-        cursor: pointer;
-        outline: none;
-        @include no-user-select();
-      }
-      &:before {
-        content: "";
-        position: absolute;
-        width: $line-weight;
-        background-color: $line-color;
-        top: $icon-size;
-        bottom: 0;
-        left: calc(50% - #{$line-weight / 2});
-      }
-    }
-    .info {
-      display: flex;
-      flex-direction: column;
-      flex: auto;
-      padding-top: $container-padding;
-      padding-left: $info-padding-left;
-      overflow: auto;
-      .body {
-        display: flex;
-        flex: initial;
-        max-height: $info-body-max-height;
-        overflow-y: auto;
-        margin: $container-padding 0;
-        &:empty {
-          margin: 0;
-        }
-      }
-      // Ellipsis for long headers
-      .header .text {
-        display: block;
-        white-space: nowrap;
-        margin: 0;
-        text-overflow: ellipsis;
-        max-width: 100%;
-        overflow: hidden;
-        cursor: pointer;
-        font-weight: 400;
-      }
-      .header,
-      .footer {
-        display: flex;
-        flex: initial;
-      }
-    }
-
+    @include icon-style();
+    @include info-style();
     &.active {
-      .workflow-icon-container .workflow-icon {
-        border: $icon-active-border;
-        font-weight: 600;
-      }
-      .info {
-        .header .text {
-          font-weight: 600;
-        }
-      }
+      @include container-active-style();
     }
     &:not(.active) {
-      .workflow-icon-container .workflow-icon.clickable:hover {
-        animation: icon-pulse-animation 1s;
-      }
+      @include container-not-active-style();
     }
   }
 }
