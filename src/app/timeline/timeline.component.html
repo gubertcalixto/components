@@ -1,0 +1,25 @@
+<div *ngFor="let item of items; index as i" class="item-area" [ngClass]="{'last-item': items.length -1 === i}">
+  <div *ngIf="alternate" class="content">
+    <div *ngIf="i % 2 === 0" class="timeline-item">
+      <ng-container [ngTemplateOutlet]="item.content"></ng-container>
+    </div>
+  </div>
+  <div class="timeline-area">
+    <div class="icon-area" [style.background-color]="color" [matTooltip]="item.iconTooltip">
+      <!-- ORDER OF ICON AND COUNTER MUST BE NOT ALTERED -->
+      <ng-container *ngIf="!item.image && !item.icon">
+        <ng-container [ngTemplateOutlet]="item.iconTemplate"></ng-container>
+      </ng-container>
+      <!-- <vs-icon *ngIf="item.icon && !item.image" [icon]="item.icon"></vs-icon> -->
+      <!-- <img *ngIf="item.image && !item.icon" class="image" [src]="item.image" (error)="replaceBrokenImage(item)" [alt]="inverseCount ? items.length - i : i + 1" /> -->
+      <span *ngIf="!item.image && !item.icon" class="counter">{{inverseCount ? items.length - i : i + 1}}</span>
+    </div>
+    <div class="vertical-line"></div>
+  </div>
+
+  <div class="content">
+    <div *ngIf="!alternate || i % 2 !== 0" class="timeline-item">
+      <ng-container [ngTemplateOutlet]="item.content"></ng-container>
+    </div>
+  </div>
+</div>

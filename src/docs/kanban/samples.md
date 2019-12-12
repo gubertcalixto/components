@@ -5,7 +5,7 @@
 
 ### HTML## Uso Básico
 ```html
-<vs-kanban [lists]="kanbanList" [service]="service" [cardSize]="40" [pageSize]="5"></vs-kanban>
+<app-kanban [lists]="kanbanList" [service]="service" [cardSize]="40" [pageSize]="5"></app-kanban>
 ```
 ### Typescript
 ```typescript
@@ -26,12 +26,12 @@ service = this.kanbanService;
 
 ### HTML
 ```html
-<vs-kanban [lists]="kanbanList" [service]="service" [headerTemplate]="headerTemplate"
+<app-kanban [lists]="kanbanList" [service]="service" [headerTemplate]="headerTemplate"
   [cardHeaderTemplate]="cardHeaderTemplate" [cardBodyTemplate]="cardBodyTemplate"
   [cardFooterTemplate]="cardFooterTemplate" [listHeaderTemplate]="listHeaderTemplate"
   [listFooterTemplate]="listFooterTemplate" [footerTemplate]="footerTemplate"
   [cardDragPlaceholderTemplate]="cardDragPlaceholderTemplate" [cardSize]="40" [pageSize]="5">
-</vs-kanban>
+</app-kanban>
 
 <ng-template #cardDragPlaceholderTemplate let-card="card"> meu card placeholder </ng-template>
 <ng-template #headerTemplate> meu header </ng-template>

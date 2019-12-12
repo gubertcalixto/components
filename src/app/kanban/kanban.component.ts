@@ -7,7 +7,7 @@ import { VsKanbanCard } from './tokens/card.token';
 import { VsKanbanList } from './tokens/list.token';
 
 @Component({
-  selector: 'vs-kanban',
+  selector: 'app-kanban',
   templateUrl: './kanban.component.html',
   styleUrls: ['./kanban.component.scss'],
   encapsulation: ViewEncapsulation.None

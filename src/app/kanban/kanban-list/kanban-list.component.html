@@ -5,7 +5,7 @@
 </div>
 <cdk-virtual-scroll-viewport #viewport *ngIf="dataSource && !isLoading" [itemSize]="cardSize" class="content"
   [id]="list.id || list.title" cdkDropList [cdkDropListData]="list" (cdkDropListDropped)="dropCard($event)">
-  <!-- 
+  <!--
     # TODO Added in Angular 8
     [cdkDragStartDelay]="cardDragDelay"
   -->
@@ -18,9 +18,9 @@
         </ng-template>
       </div>
     </ng-container>
-    <vs-kanban-card *ngIf="card" [card]="card" [cardHeaderTemplate]="cardHeaderTemplate"
+    <app-kanban-card *ngIf="card" [card]="card" [cardHeaderTemplate]="cardHeaderTemplate"
       [cardBodyTemplate]="cardBodyTemplate" [cardFooterTemplate]="cardFooterTemplate">
-    </vs-kanban-card>
+    </app-kanban-card>
   </div>
 </cdk-virtual-scroll-viewport>
 <div *ngIf="isLoading" class="loading">

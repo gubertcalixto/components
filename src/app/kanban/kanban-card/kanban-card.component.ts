@@ -3,7 +3,7 @@ import { Component, Input, TemplateRef, ViewEncapsulation } from '@angular/core'
 import { VsKanbanCard } from '../tokens/card.token';
 
 @Component({
-  selector: 'vs-kanban-card',
+  selector: 'app-kanban-card',
   templateUrl: './kanban-card.component.html',
   styleUrls: ['./kanban-card.component.scss'],
   encapsulation: ViewEncapsulation.None

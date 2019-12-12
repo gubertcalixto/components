@@ -12,7 +12,7 @@ import { KanbanInternalListEventEnum } from '../tokens/kanban-list-event.enum';
 import { VsKanbanList } from '../tokens/list.token';
 
 @Component({
-  selector: 'vs-kanban-list',
+  selector: 'app-kanban-list',
   templateUrl: './kanban-list.component.html',
   styleUrls: ['./kanban-list.component.scss'],
   encapsulation: ViewEncapsulation.None

@@ -1,0 +1,107 @@
+$icon-size: 30px;
+$icon-margin: 0 12px;
+$icon-font-size: 16px;
+$vertical-line: 3px solid;
+
+@mixin app-timeline-text-color-depending-on-background {
+  height: inherit;
+  color: transparent;
+  text-align: center;
+  background: inherit;
+  -webkit-background-clip: text;
+  filter: invert(1) grayscale(1) contrast(9);
+}
+
+@mixin app-timeline-icon-style {
+  .icon-area {
+    display: flex;
+    flex: initial;
+    align-items: center;
+    place-content: center;
+    font-size: $icon-font-size;
+    font-weight: 600;
+    text-align: center;
+    margin: $icon-margin;
+    min-width: $icon-size;
+    width: $icon-size;
+    height: $icon-size;
+    overflow: hidden;
+    line-height: $icon-size;
+    border-radius: 50%;
+    > app-timeline-item-icon {
+      width: $icon-size;
+      height: $icon-size;
+      overflow: hidden;
+      // Hide counter when has icon template
+    }
+    > span {
+      @include app-timeline-text-color-depending-on-background();
+    }
+    > .image {
+      min-width: $icon-size;
+      width: $icon-size;
+      height: $icon-size;
+      border-radius: 50%;
+      border: 50%;
+      object-fit: cover;
+    }
+    > * + .counter{
+      display: none;
+    }
+  }
+}
+
+@mixin app-timeline-line-style {
+  .item-area {
+    .vertical-line {
+      flex: auto;
+    }
+    &:not(.last-item) .vertical-line {
+      border-left: $vertical-line;
+    }
+  }
+}
+
+app-timeline {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  align-items: stretch;
+  place-content: space-evenly;
+  .item-area {
+    display: flex;
+    flex-direction: row;
+    > .timeline-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      place-content: center flex-start;
+      flex: 0 1 auto;
+      @include app-timeline-icon-style();
+    }
+    > .content {
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      place-content: flex-start space-between;
+    }
+  }
+  @include app-timeline-line-style();
+}
+
+$timeline-item-space-between: 16px;
+$timeline-item-padding: 12px;
+$timeline-item-border-radius: 6px;
+$timeline-item-background: #efefef;
+.timeline-item {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+  justify-content: space-between start;
+  align-items: flex-start;
+  place-content: flex-start space-between;
+  background-color: $timeline-item-background;
+  padding: $timeline-item-padding;
+  margin-bottom: $timeline-item-space-between;
+  border-radius: $timeline-item-border-radius;
+}

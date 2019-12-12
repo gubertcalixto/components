@@ -8,6 +8,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class ExamplesComponent implements OnInit {
   navLinks = [
+    { path: '/examples/timeline', label: 'Timeline' },
     { path: '/examples/input', label: 'Input' },
     { path: '/examples/button', label: 'Button' },
     { path: '/examples/loader', label: 'Loader' },

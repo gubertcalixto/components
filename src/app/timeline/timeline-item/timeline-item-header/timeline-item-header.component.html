@@ -1,0 +1,5 @@
+<!-- <app-label model="main_title" *ngIf="label" [label]="label"></!-->
+<span *ngIf="label">{{label}}</span>
+<ng-container *ngIf="!label">
+  <ng-content></ng-content>
+</ng-container>

@@ -1,0 +1,19 @@
+<h5>Vs Timeline</h5>
+<div style="display: flex; flex-direction: row; align-content: stretch; width: 100%;">
+  <app-timeline style="flex:auto" [alternate]="alternate" [inverseCount]="inverse">
+    <!-- <app-timeline-item>
+      <app-timeline-item-header>Olá </app-timeline-item-header>
+      <app-timeline-item-body>teste 123</app-timeline-item-body>
+      <app-timeline-item-footer>Footer</app-timeline-item-footer>
+      <app-timeline-item-icon>
+        <div style="color: red">oi</div>
+      </app-timeline-item-icon>
+    </app-timeline-item> -->
+    <ng-container *ngFor="let item of items">
+      <app-timeline-item>
+        <app-timeline-item-header [label]="item.title"></app-timeline-item-header>
+        <app-timeline-item-body>{{item.content}}</app-timeline-item-body>
+      </app-timeline-item>
+    </ng-container>
+  </app-timeline>
+</div>
