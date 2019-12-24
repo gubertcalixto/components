@@ -25,3 +25,51 @@ export class WorkflowItem {
     }
   }
 }
+
+export class WorkflowSearcher {
+  public icon?: string;
+  public title?: string;
+  public description?: string;
+  public groups?: WorkflowSearcherGroup[] = [];
+  public hasSearch?= true;
+
+  constructor(data?: WorkflowSearcher) {
+    if (data) {
+      this.icon = data.icon;
+      this.title = data.title;
+      this.description = data.description;
+      this.groups = data.groups || [];
+      this.hasSearch = typeof data.hasSearch === 'boolean' ? data.hasSearch : true;
+    }
+  }
+}
+
+export class WorkflowSearcherGroup {
+  public icon?: string;
+  public title?: string;
+  public description?: string;
+  public items?: WorkflowSearcherItem[] = [];
+
+  constructor(data?: WorkflowSearcherGroup) {
+    if (data) {
+      this.icon = data.icon;
+      this.title = data.title;
+      this.description = data.description;
+      this.items = data.items || [];
+    }
+  }
+}
+
+export class WorkflowSearcherItem {
+  public icon?: string;
+  public title?: string;
+  public description?: string;
+
+  constructor(data?: WorkflowSearcherItem) {
+    if (data) {
+      this.icon = data.icon;
+      this.title = data.title;
+      this.description = data.description;
+    }
+  }
+}

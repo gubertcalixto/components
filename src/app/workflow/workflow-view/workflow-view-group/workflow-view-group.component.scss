@@ -1,0 +1,23 @@
+$view-group-icon-spacing: 12px;
+
+.header {
+    display: flex;
+    flex: initial;
+    flex-direction: column;
+    > .title-container {
+      display: flex;
+      flex: initial;
+      > .icon {
+        flex: initial;
+        & + .title {
+          padding-left: $view-group-icon-spacing;
+        }
+      }
+      > .title {
+        flex: initial;
+      }
+      > .actions {
+        flex: auto;
+      }
+    }
+  }

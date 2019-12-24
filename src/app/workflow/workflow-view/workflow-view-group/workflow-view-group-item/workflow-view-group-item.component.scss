@@ -1,0 +1,20 @@
+$view-item-icon-spacing: 12px;
+
+:host {
+  display: flex;
+  flex: initial;
+  > .icon {
+    flex: initial;
+  }
+  > .info-container {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    > .title {
+      flex: initial;
+    }
+    > .description {
+        flex: auto;
+    }
+  }
+}

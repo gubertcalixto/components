@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
-import { WorkflowItem } from './workflow/workflow.tokens';
+import { WorkflowItem, WorkflowSearcher, WorkflowSearcherGroup, WorkflowSearcherItem } from './workflow/workflow.tokens';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +9,27 @@ import { WorkflowItem } from './workflow/workflow.tokens';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
+  public selectedItemView: WorkflowSearcher = {
+    title: 'Novo acionador',
+    description: 'Os acionadores iniciam a execução de uma regra. Os acionadores podem escutar eventos ou ser agendados para execução.',
+    icon: 'edit',
+    groups: [
+      {
+        icon: 'edit',
+        title: 'Recommended',
+        description: 'Nada',
+        items: [
+          {
+            icon: 'trash-alt',
+            title: 'Agendado',
+            description: 'Executa esta regra no agendamento indicado. Pode escolher se pretende executar ações num conjunto de problemas recolhidos com uma procura de JQL ou simplesmente executar a regra.'
+          }
+
+        ] as WorkflowSearcherItem[]
+      }
+    ] as WorkflowSearcherGroup[]
+  };
+
   public items: WorkflowItem[] = [
     {
       icon: 1,
@@ -96,6 +117,7 @@ export class AppComponent {
     iconCallback: (item) => this.finalComponentClick(item),
     titleCallback: (item) => this.finalComponentClick(item)
   };
+  
   public selectedItem = this.items[0];
 
   private clearAllActiveItemsFromWorkflow() {

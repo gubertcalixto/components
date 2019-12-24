@@ -1,0 +1,30 @@
+<div class="header">
+    <div class="title-container">
+        <div *ngIf="item.icon" class="icon">{{item.icon}}</div>
+        <div *ngIf="item.title" class="title">{{item.title}}</div>
+        <div *ngIf="actionsTemplate" class="actions">
+            <ng-template [ngTemplateOutlet]="actionsTemplate" [ngTemplateOutletContext]="{item: item}"></ng-template>
+        </div>
+    </div>
+    <div *ngIf="item.description" class="description">{{item.description}}</div>
+    <!-- <vs-search></vs-search> -->
+</div>
+<div class="group-container">
+    <app-workflow-view-group *ngFor="let group of item.groups" [group]="group">
+        <div class="header">
+            <div class="title-container">
+                <div class="icon">{{group.icon}}</div>
+                <div class="title">{{group.title}}</div>
+            </div>
+            <div class="actions">
+
+            </div>
+        </div>
+        <div *ngFor="let groupItem of group.items" class="item">
+            {{groupItem.title}}
+        </div>
+        <div *ngIf="!group.items || group.items.length === 0" class="no-items">
+            sem dados
+        </div>
+    </app-workflow-view-group>
+</div>

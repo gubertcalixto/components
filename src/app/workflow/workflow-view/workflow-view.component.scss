@@ -1,0 +1,41 @@
+$view-icon-spacing: 12px;
+$view-spacing-between-groups: 12px;
+
+.header {
+  display: flex;
+  flex: initial;
+  flex-direction: column;
+  > .title-container {
+    display: flex;
+    flex: initial;
+    > .icon {
+      flex: initial;
+      & + .title {
+        padding-left: $view-icon-spacing;
+      }
+    }
+    > .title {
+      flex: initial;
+    }
+    > .actions {
+      flex: auto;
+
+      ng-template {
+      }
+    }
+  }
+
+  > .description {
+  }
+}
+
+.group-container {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  app-workflow-view-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: $view-spacing-between-groups;
+  }
+}
