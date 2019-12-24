@@ -22,10 +22,10 @@ $container-padding: 4px;
 
 @mixin icon-style() {
   $icon-container-width: 15%;
-  $icon-size: 32px;
+  $icon-size: 25px;
   $icon-default-background: #ffffff;
   $icon-border: 1px solid #e5e5e5;
-  $line-weight: 2px;
+  $line-weight: 1px;
   $line-color: #e5e5e5;
 
   .icon-container {

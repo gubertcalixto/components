@@ -4,7 +4,7 @@ $last-item-padding: 8px;
 
 @mixin end-line() {
   $end-line-width: 50%;
-  $end-line-height: 2px;
+  $end-line-height: 1px;
   $end-line-color: #e5e5e5;
   app-workflow-item:last-of-type .container {
     .info {
